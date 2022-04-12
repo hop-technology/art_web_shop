@@ -7,6 +7,9 @@ const ProductPage = ({ product }) => {
       <Image src={product.images[0].url} alt={product.name} height={200} width={200} />
       <p>{product.description}</p>
       <p>{product.price}</p>
+      <button>
+          <p>Add to Cart</p>
+      </button>
     </div>
   )
 }
