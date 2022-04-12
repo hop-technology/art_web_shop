@@ -2,14 +2,26 @@ import Image from 'next/image'
 
 const ProductPage = ({ product }) => {
   return (
-    <div>
-      <h1>{product.name}</h1>
-      <Image src={product.images[0].url} alt={product.name} height={200} width={200} />
-      <p>{product.description}</p>
-      <p>{product.price}</p>
-      <button>
-          <p>Add to Cart</p>
-      </button>
+    <div className='product-page'>
+      <div className='product-page__container'>
+        <h1>{product.name}</h1>
+        <div className='product-page__text'>
+          <p>{product.description}</p>
+          <p>{product.price} SEK</p>
+        </div>
+        <div className='product-page__btn-container'>
+          <button className='product-page__btn'>Add to Cart</button>
+        </div>
+      </div>
+
+      <div className='product-page__image'>
+        <Image
+          src={product.images[0].url}
+          alt={product.name}
+          height={600}
+          width={600}
+        />
+      </div>
     </div>
   )
 }
