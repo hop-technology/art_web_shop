@@ -1,0 +1,59 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; /* Set border box to be inherited */
+}
+
+html {
+  // This defines what 1 rem is.
+  // 1 rem = 10px; 10px/16 = 62.5%
+  font-size: 62.5%; /* allows user to zom in on page (change font size) px won't work*/
+
+  @include respond(desktop-4K) {
+    // width > 3000?
+    font-size: 112.5%; //1rem = 18, 18/16 = 112.5%
+  }
+
+  @include respond(desktop-3K) {
+    // width < 3000?
+    font-size: 100%; //1rem = 16, 16/16 = 100%
+  }
+
+  @include respond(desktop-XL) {
+    // width < 2600?
+    font-size: 87.5%; //1rem = 14, 14/16 = 75%
+  }
+
+  @include respond(desktop-L) {
+    // width < 1200?
+    font-size: 75%; //1rem = 12, 12/16 = 75%
+  }
+
+  @include respond(laptop-M) {
+    // width < 1200?
+    font-size: 56.25%; // 1 rem = 9px, 9/16 = 56.25%
+  }
+
+  @include respond(tab-port) {
+    // width < 900?
+    font-size: 50%; // 1 rem = 8px, 8/16 =50%
+  }
+
+  @include respond(phone) {
+    // width < 600?
+    font-size: 30%; // 1 rem = 4.8px, 4.8/16 =30%
+  }
+}
+
+body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background-color: $color-bg;
+}
+
+// .wrapper {
+//   // To hide overflow on mobile
+//   overflow-x: hidden;
+// }

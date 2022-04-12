@@ -4,6 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "watch:sass": "sass --watch sass/main.scss:styles/style.css",
+    "compile:sass": "sass sass/main.scss:styles/style.comp.css",
+    "prefix:css": "postcss --use autoprefixer -b 'last 5 versions' styles/style.comp.css -o styles/style.prefix.css",
+    "compress:css": "sass styles/style.prefix.css styles/style.min.css --style compressed",
+    "build:css": "npm-run-all compile:sass prefix:css compress:css",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

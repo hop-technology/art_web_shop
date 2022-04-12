@@ -1,0 +1,81 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone-S {
+    @media only screen and (max-width: 20em) {
+      // 320px
+      @content;
+    }
+  }
+  @if $breakpoint == phone-M {
+    @media only screen and (max-width: 23.438em) {
+      // 375px
+      @content;
+    }
+  }
+  @if $breakpoint == phone-L {
+    @media only screen and (max-width: 32.75em) {
+      // 524px
+      @content;
+    }
+  }
+  @if $breakpoint == phone-XL {
+    @media only screen and (max-width: 37.5em) {
+      // 600px
+      @content;
+    }
+  }
+  @if $breakpoint == tab-port {
+    // 900px
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+  @if $breakpoint == laptop-M {
+    // 1200px
+    @media only screen and (max-width: 75em) {
+      @content;
+    }
+  }
+  @if $breakpoint == laptop-L {
+    // 1400px
+    @media only screen and (max-width: 87.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop-S {
+    // 1640px
+    @media only screen and (max-width: 102.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop-M {
+    // 1750px
+    @media only screen and (max-width: 112.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop-L {
+    // 2000px
+    @media only screen and (max-width: 125em) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop-XL {
+    // 2600px
+    @media only screen and (max-width: 162.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop-3K {
+    // 3000px
+    @media only screen and (max-width: 187.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop-4K {
+    // 3600px
+    // 3840px
+    @media only screen and (min-width: 187.5em) {
+      @content;
+    }
+  }
+}

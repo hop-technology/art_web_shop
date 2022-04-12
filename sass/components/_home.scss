@@ -1,0 +1,12 @@
+.homepage {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 15rem;
+    justify-content: center;
+
+    @include respond(phone-L) {
+        flex-direction: column;
+        align-items: center;
+
+    }
+}
