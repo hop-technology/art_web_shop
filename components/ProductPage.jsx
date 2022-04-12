@@ -1,6 +1,9 @@
 import Image from 'next/image'
+import { addToCart } from '../redux/cart.slice'
+import { useDispatch } from 'react-redux'
 
 const ProductPage = ({ product }) => {
+  const dispatch = useDispatch()
   return (
     <div className='product-page'>
       <div className='product-page__container'>
@@ -10,7 +13,12 @@ const ProductPage = ({ product }) => {
           <p>{product.price} SEK</p>
         </div>
         <div className='product-page__btn-container'>
-          <button className='product-page__btn'>Add to Cart</button>
+          <button
+            onClick={() => dispatch(addToCart(product))}
+            className='product-page__btn'
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
 
