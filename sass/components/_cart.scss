@@ -1,0 +1,36 @@
+.cart {
+  margin: 5rem;
+
+  &__container {
+    display: table;
+    width: 100%;
+  }
+
+  &__header {
+    vertical-align: bottom;
+
+    th {
+        text-align: center;
+    }
+  }
+
+  &__content {
+    vertical-align: center;
+
+    td {
+        text-align: center;
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+    }
+  }
+
+  button {
+    width: 2.5rem;
+    height: 3rem;
+    background-color: black;
+    color: #ffffff;
+    border: none;
+    margin: 0.5rem;
+    font-size: 1rem;
+  }
+}

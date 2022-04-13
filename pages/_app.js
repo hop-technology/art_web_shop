@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Link href='/cart'>
-        <button>Cart</button>
+        <button className='product-page__btn'>Cart</button>
       </Link>
       <Component {...pageProps} />
     </Provider>

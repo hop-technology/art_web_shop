@@ -18,7 +18,6 @@ const cartSlice = createSlice({
     },
     decrementQuantity: (state, action) => {
       const item = state.find((item) => item.id === action.payload)
-      item.quantity--
       if (item.quantity === 1) {
         const index = state.findIndex((item) => item.id === action.payload)
         state.splice(index, 1)

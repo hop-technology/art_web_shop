@@ -64,6 +64,37 @@ body {
   color: #0f0f0f;
 }
 
+.cart {
+  margin: 5rem;
+}
+.cart__container {
+  display: table;
+  width: 100%;
+}
+.cart__header {
+  vertical-align: bottom;
+}
+.cart__header th {
+  text-align: center;
+}
+.cart__content {
+  vertical-align: center;
+}
+.cart__content td {
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+.cart button {
+  width: 2.5rem;
+  height: 3rem;
+  background-color: black;
+  color: #ffffff;
+  border: none;
+  margin: 0.5rem;
+  font-size: 1rem;
+}
+
 .homepage {
   display: flex;
   flex-wrap: wrap;
