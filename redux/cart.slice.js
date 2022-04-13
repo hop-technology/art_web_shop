@@ -9,7 +9,7 @@ const cartSlice = createSlice({
       if (itemExists) {
         itemExists.quantity++
       } else {
-        state.push({ ...action.payload, quantity: 1 })
+        state.push({ ...action.payload, quantity: 1, message: 'Added to cart' })
       }
     },
     incrementQuantity: (state, action) => {

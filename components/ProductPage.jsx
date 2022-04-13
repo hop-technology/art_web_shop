@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import { addToCart } from '../redux/cart.slice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const ProductPage = ({ product }) => {
+  const cart = useSelector((state) => state.cart)
   const dispatch = useDispatch()
   return (
     <div className='product-page'>
@@ -21,7 +22,6 @@ const ProductPage = ({ product }) => {
           </button>
         </div>
       </div>
-
       <div className='product-page__image'>
         <Image
           src={product.images[0].url}
