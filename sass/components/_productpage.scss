@@ -1,6 +1,7 @@
 .product-page {
   display: flex;
   align-items: center;
+  height: 100vh;
 
   &__container {
     display: flex;
@@ -35,9 +36,6 @@
     align-items: center;
   }
 
-
- 
-
   &__btn {
     width: max-content;
     padding: 1.2rem 3.2rem;
@@ -50,7 +48,7 @@
     cursor: pointer;
     margin-top: 2rem;
     @include respond(tab-port) {
-     margin-bottom: 5rem;
+      margin-bottom: 5rem;
     }
 
     &:hover {
