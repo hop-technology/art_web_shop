@@ -55,16 +55,16 @@ const CartPage = () => {
 
                     <td>
                       <button
-                        onClick={() => dispatch(incrementQuantity(item.id))}
-                      >
-                        {' '}
-                        +{' '}
-                      </button>
-                      <button
                         onClick={() => dispatch(decrementQuantity(item.id))}
                       >
                         {' '}
                         -{' '}
+                      </button>
+                      <button
+                        onClick={() => dispatch(incrementQuantity(item.id))}
+                      >
+                        {' '}
+                        +{' '}
                       </button>
                       <button onClick={() => dispatch(removeFromCart(item.id))}>
                         {' '}
