@@ -1,15 +1,15 @@
 import { Provider } from 'react-redux'
 import store from '../redux/store'
-import Link from 'next/link'
 import '../styles/style.css'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <Link href='/cart'>
-        <button className='product-page__btn'>Cart</button>
-      </Link>
+      <Navbar />
       <Component {...pageProps} />
+      <Footer />
     </Provider>
   )
 }
