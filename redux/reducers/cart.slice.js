@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux'
+import { successMessage } from './message.slice'
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -9,7 +11,10 @@ const cartSlice = createSlice({
       if (itemExists) {
         itemExists.quantity++
       } else {
-        state.push({ ...action.payload, quantity: 1, message: 'Added to cart' })
+        state.push({
+          ...action.payload,
+          quantity: 1,
+        })
       }
     },
     incrementQuantity: (state, action) => {

@@ -1,12 +1,23 @@
 import Image from 'next/image'
-import { addToCart } from '../redux/cart.slice'
+import { addToCart } from '../redux/reducers/cart.slice'
+import { successMessage } from '../redux/reducers/message.slice'
 import { useDispatch, useSelector } from 'react-redux'
+import PopUp from './PopUp'
 
 const ProductPage = ({ product }) => {
   const cart = useSelector((state) => state.cart)
+  const message = useSelector((state) => state.message)
   const dispatch = useDispatch()
+
+  const handleAddToCart = () => {
+    let popUpMessage = 'Product added to cart'
+    dispatch(addToCart(product))
+    dispatch(successMessage(popUpMessage))
+  }
+
   return (
     <div className='product-page'>
+      {message === "" ? null : <PopUp message={message} />}
       <div className='product-page__container'>
         <h1>{product.name}</h1>
         <div className='product-page__text'>
@@ -15,7 +26,7 @@ const ProductPage = ({ product }) => {
         </div>
         <div className='product-page__btn-container'>
           <button
-            onClick={() => dispatch(addToCart(product))}
+            onClick={() => handleAddToCart()}
             className='product-page__btn'
           >
             Add to Cart
