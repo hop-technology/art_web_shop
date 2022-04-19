@@ -4,17 +4,17 @@ import {
   incrementQuantity,
   decrementQuantity,
   removeFromCart,
+  orderToCart,
 } from '../redux/reducers/cart.slice'
+import HopHelper from './api/services/helpers'
+import Order from './api/services/newApi'
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart)
   const dispatch = useDispatch()
 
-  const getTotalPrice = () => {
-    return cart.reduce(
-      (accumulator, item) => accumulator + item.quantity * item.price,
-      0
-    )
+  const handlepay = (data) => {
+    Order.create(data)
   }
 
   return (
@@ -34,7 +34,7 @@ const CartPage = () => {
             </thead>
             {cart.map((item, index) => {
               return (
-                <tbody key={index}  >
+                <tbody key={index}>
                   <tr className='cart__content'>
                     <td>
                       <Image
@@ -79,7 +79,10 @@ const CartPage = () => {
               )
             })}
           </table>
-          <h2>Grand Total: {getTotalPrice()} SEK</h2>
+          <div>
+            <h2>Grand Total: {HopHelper.totalPrice(cart)} SEK</h2>
+            <button onClick={() => handlepay(cart)}>Confirm and Pay</button>
+          </div>
         </>
       )}
     </div>
