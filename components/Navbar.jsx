@@ -33,7 +33,7 @@ const Navbar = () => {
   const isScrolled = scrollY >= 10 ? 'scrolled' : ''
 
   const getTotalItems = () => {
-    return cart.reduce((total, item) => total + item.quantity, 0)
+    return cart.reduce((total, item) => ` (${total + item.quantity})`, null)
   }
 
   return (
@@ -54,7 +54,10 @@ const Navbar = () => {
         <div className='navbar__links--link'>
           <Link href='/cart'>
             <a className={`navbar__links--a ${cartActive}`}>
-              Cart ({getTotalItems()})
+              <p>
+                Cart
+                <span className='navbar__cart'>{getTotalItems()}</span>
+              </p>
             </a>
           </Link>
         </div>

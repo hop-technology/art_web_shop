@@ -247,6 +247,9 @@ body {
   width: 100%;
   z-index: 500;
 }
+.navbar__cart {
+  font-size: 1.1rem;
+}
 .navbar__burger {
   display: none;
   background-color: transparent;
