@@ -12,16 +12,17 @@ const PopUp = ({ message }) => {
       setTimeout(() => {
         dispatch(resetMessage())
         setOpen(false)
-      }, 3000)
+      }, 1500)
     }
   }, [message])
 
-  return open && <div className='popup'>
-    <div className='popup__message'>
-
-    {message.message}
-    </div>
-    </div>
+  return (
+    open && (
+      <div className='popup'>
+        <div className='popup__message'>{message.message}</div>
+      </div>
+    )
+  )
 }
 
 export default PopUp

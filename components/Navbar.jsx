@@ -33,7 +33,13 @@ const Navbar = () => {
   const isScrolled = scrollY >= 10 ? 'scrolled' : ''
 
   const getTotalItems = () => {
-    return cart.reduce((total, item) => ` (${total + item.quantity})`, null)
+    let total = cart.reduce((total, item) => total + item.quantity, 0)
+
+    if (total === 0) {
+      return null
+    } else {
+      return ` (${total})`
+    }
   }
 
   return (
