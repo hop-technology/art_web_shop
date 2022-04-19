@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
 import MobNav from './MobNav'
 
 const Navbar = () => {
+  const cart = useSelector((state) => state.cart)
   const [mobNav, setMobNav] = useState(false)
   const Toggle = () => setMobNav(!mobNav)
   const [scrollY, setScrollY] = useState(0)
@@ -13,8 +15,6 @@ const Navbar = () => {
   const location = router.asPath
   const homeActive = ['/'].includes(location) ? 'active' : ''
   const cartActive = ['/cart'].includes(location) ? 'active' : ''
-  const aboutActive = ['/about-us'].includes(location) ? 'active' : ''
-  const contactActive = ['/contact-us'].includes(location) ? 'active' : ''
 
   const logit = () => {
     setScrollY(window.pageYOffset)
@@ -31,6 +31,10 @@ const Navbar = () => {
   })
 
   const isScrolled = scrollY >= 10 ? 'scrolled' : ''
+
+  const getTotalItems = () => {
+    return cart.reduce((total, item) => total + item.quantity, 0)
+  }
 
   return (
     <div className={`navbar ${isScrolled}`}>
@@ -49,7 +53,9 @@ const Navbar = () => {
         </div>
         <div className='navbar__links--link'>
           <Link href='/cart'>
-            <a className={`navbar__links--a ${cartActive}`}>Cart</a>
+            <a className={`navbar__links--a ${cartActive}`}>
+              Cart ({getTotalItems()})
+            </a>
           </Link>
         </div>
       </div>
