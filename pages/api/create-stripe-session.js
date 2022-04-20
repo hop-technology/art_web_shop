@@ -6,7 +6,7 @@ async function CreateStripeSession(req, res) {
   const redirectURL =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/'
-      : undefined
+      : 'https://art-web-shop.vercel.app/'
 
   const stripeItem = {
     price_data: {
