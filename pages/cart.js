@@ -4,17 +4,15 @@ import {
   incrementQuantity,
   decrementQuantity,
   removeFromCart,
-  orderToCart,
 } from '../redux/reducers/cart.slice'
-import HopHelper from './api/services/helpers'
-import Order from './api/services/newApi'
+import HopHelper from './api/helpers'
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart)
   const dispatch = useDispatch()
 
   const handlepay = (data) => {
-    Order.create(data)
+    HopHelper.createCheckOutSession(data)
   }
 
   return (
