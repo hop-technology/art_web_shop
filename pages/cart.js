@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   incrementQuantity,
@@ -8,10 +9,12 @@ import {
 import HopHelper from './api/helpers'
 
 const CartPage = () => {
+  const [loading, setLoading] = useState(false)
   const cart = useSelector((state) => state.cart)
   const dispatch = useDispatch()
 
   const handlepay = (data) => {
+    setLoading(true)
     HopHelper.createCheckOutSession(data)
   }
 
@@ -90,7 +93,7 @@ const CartPage = () => {
               className='cart__confirm-order'
               onClick={() => handlepay(cart)}
             >
-              Confirm and Pay
+              {loading ? 'processing...' : 'Confirm and Pay'}
             </button>
           </div>
         </>

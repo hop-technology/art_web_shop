@@ -27,7 +27,7 @@ async function CreateStripeSession(req, res) {
     payment_method_types: ['card', 'klarna'],
     line_items: stripeItem,
     mode: 'payment',
-    success_url: redirectURL + '?status=success',
+    success_url: redirectURL + '?status=success', 
     cancel_url: redirectURL + '?status=cancel',
   })
 

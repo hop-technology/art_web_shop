@@ -14,10 +14,14 @@ const PopUp = () => {
     }
   }, [message])
 
-  return (
+  return message.open && message.success ?
+    <div className='popup'>
+      <div className='popup__success'>{message.message}</div>
+    </div>
+   : (
     message.open && (
       <div className='popup'>
-        <div className='popup__message'>{message.message}</div>
+        <div className='popup__error'>{message.message}</div>
       </div>
     )
   )
