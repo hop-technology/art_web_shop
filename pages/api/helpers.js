@@ -1,10 +1,12 @@
 import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
-import { errorMessage } from '../../redux/reducers/message.slice'
+import store from '../../redux/store/store'
+import {
+  errorMessage,
+  successMessage,
+} from '../../redux/reducers/message.slice'
 const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 const stripePromise = loadStripe(publishableKey)
-const dispatch = useDispatch()
 
 const HopHelper = {
   totalPrice(data) {
@@ -29,6 +31,14 @@ const HopHelper = {
     }
   },
 
+  popupStatus(status) {
+    if (status === 'success') {
+      store.dispatch(successMessage('Payment successful'))
+    } else if (status === 'cancel') {
+      store.dispatch(errorMessage('Payment unsuccessful'))
+    }
+  },
+
   async createCheckOutSession(cart) {
     try {
       const stripe = await stripePromise
@@ -40,7 +50,9 @@ const HopHelper = {
       })
       return response
     } catch (error) {
-      dispatch(errorMessage('Something went wrong, please try again later.'))
+      store.dispatch(
+        errorMessage('Something went wrong, please try again later.')
+      )
     }
   },
 }

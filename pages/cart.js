@@ -93,7 +93,7 @@ const CartPage = () => {
               className='cart__confirm-order'
               onClick={() => handlepay(cart)}
             >
-              {loading ? 'processing...' : 'Confirm and Pay'}
+              {loading ? 'Processing...' : 'Confirm and Pay'}
             </button>
           </div>
         </>
