@@ -1,20 +1,21 @@
 import Image from 'next/image'
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   incrementQuantity,
   decrementQuantity,
   removeFromCart,
 } from '../redux/reducers/cart.slice'
+import HopHelper from './api/helpers'
 
 const CartPage = () => {
+  const [loading, setLoading] = useState(false)
   const cart = useSelector((state) => state.cart)
   const dispatch = useDispatch()
 
-  const getTotalPrice = () => {
-    return cart.reduce(
-      (accumulator, item) => accumulator + item.quantity * item.price,
-      0
-    )
+  const handlePay = (data) => {
+    setLoading(true)
+    HopHelper.createCheckOutSession(data)
   }
 
   return (
@@ -25,16 +26,18 @@ const CartPage = () => {
         <>
           <table className='cart__container'>
             <thead className='cart__header'>
-              <th>Image</th>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Actions</th>
-              <th>Total Price</th>
+              <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+                <th>Total Price</th>
+              </tr>
             </thead>
             {cart.map((item, index) => {
               return (
-                <tbody key={index}  >
+                <tbody key={index}>
                   <tr className='cart__content'>
                     <td>
                       <Image
@@ -55,18 +58,23 @@ const CartPage = () => {
 
                     <td>
                       <button
+                        className='cart__action-button'
                         onClick={() => dispatch(decrementQuantity(item.id))}
                       >
                         {' '}
                         -{' '}
                       </button>
                       <button
+                        className='cart__action-button'
                         onClick={() => dispatch(incrementQuantity(item.id))}
                       >
                         {' '}
                         +{' '}
                       </button>
-                      <button onClick={() => dispatch(removeFromCart(item.id))}>
+                      <button
+                        className='cart__action-button'
+                        onClick={() => dispatch(removeFromCart(item.id))}
+                      >
                         {' '}
                         x{' '}
                       </button>
@@ -79,7 +87,15 @@ const CartPage = () => {
               )
             })}
           </table>
-          <h2>Grand Total: {getTotalPrice()} SEK</h2>
+          <div>
+            <h2>Grand Total: {HopHelper.totalPrice(cart)} SEK</h2>
+            <button
+              className='cart__confirm-order'
+              onClick={() => handlePay(cart)}
+            >
+              {loading ? 'Processing...' : 'Confirm and Pay'}
+            </button>
+          </div>
         </>
       )}
     </div>

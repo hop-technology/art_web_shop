@@ -12,6 +12,15 @@ const messageSlice = createSlice({
         ...state,
         message: action.payload,
         open: true,
+        success: true
+      }
+    },
+    errorMessage: (state, action) => {
+      return {
+        ...state,
+        message: action.payload,
+        open: true,
+        success: false
       }
     },
     resetMessage: (state, action) => {
@@ -26,4 +35,5 @@ const messageSlice = createSlice({
 
 export const messageReducer = messageSlice.reducer
 
-export const { successMessage, resetMessage } = messageSlice.actions
+export const { successMessage, resetMessage, errorMessage } =
+  messageSlice.actions

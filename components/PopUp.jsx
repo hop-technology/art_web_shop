@@ -1,25 +1,27 @@
-import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { resetMessage } from '../redux/reducers/message.slice'
 
-const PopUp = ({ message }) => {
-  const [open, setOpen] = useState(false)
+const PopUp = () => {
+  const message = useSelector((state) => state.message)
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (message.open === true) {
-      setOpen(true)
       setTimeout(() => {
         dispatch(resetMessage())
-        setOpen(false)
       }, 1500)
     }
   }, [message])
 
-  return (
-    open && (
+  return message.open && message.success ?
+    <div className='popup'>
+      <div className='popup__success'>{message.message}</div>
+    </div>
+   : (
+    message.open && (
       <div className='popup'>
-        <div className='popup__message'>{message.message}</div>
+        <div className='popup__error'>{message.message}</div>
       </div>
     )
   )

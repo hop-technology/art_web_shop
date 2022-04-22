@@ -9,10 +9,26 @@
   width: 100%;
   height: 100%;
 
-  &__message {
+  &__success {
     width: 20%;
     height: 10%;
     background: green;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #ffffff;
+    font-weight: 300;
+    @media (min-width: 768px) {
+      padding: 40px;
+    }
+  }
+
+  &__error {
+    width: 20%;
+    height: 10%;
+    background: red;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;

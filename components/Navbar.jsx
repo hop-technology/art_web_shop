@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
 import Link from 'next/link'
 import MobNav from './MobNav'
+import HopHelper from '../pages/api/helpers'
 
 const Navbar = () => {
   const cart = useSelector((state) => state.cart)
@@ -32,16 +32,6 @@ const Navbar = () => {
 
   const isScrolled = scrollY >= 10 ? 'scrolled' : ''
 
-  const getTotalItems = () => {
-    let total = cart.reduce((total, item) => total + item.quantity, 0)
-
-    if (total === 0) {
-      return null
-    } else {
-      return ` (${total})`
-    }
-  }
-
   return (
     <div className={`navbar ${isScrolled}`}>
       <button className='navbar__burger' onClick={() => Toggle()}>
@@ -62,7 +52,7 @@ const Navbar = () => {
             <a className={`navbar__links--a ${cartActive}`}>
               <p>
                 Cart
-                <span className='navbar__cart'>{getTotalItems()}</span>
+                <span className='navbar__cart'>{HopHelper.totalAmount(cart)}</span>
               </p>
             </a>
           </Link>

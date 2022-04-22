@@ -17,7 +17,7 @@ const ProductPage = ({ product }) => {
 
   return (
     <>
-      {message === '' ? null : <PopUp message={message} />}
+      {message === '' ? null : <PopUp />}
       <div className='product-page'>
         <div className='product-page__container'>
           <h1>{product.name}</h1>
