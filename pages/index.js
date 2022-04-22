@@ -5,7 +5,7 @@ import ProductCard from '../components/ProductCard'
 import PopUp from '../components/PopUp'
 import HopHelper from './api/helpers'
 
-const index = ({ products }) => {
+const Index = ({ products }) => {
   const router = useRouter()
   const { status } = router.query
 
@@ -27,7 +27,7 @@ const index = ({ products }) => {
   )
 }
 
-export default index
+export default Index
 
 export async function getStaticProps({ locale }) {
   const { products } = await getAllProducts({ locale })
