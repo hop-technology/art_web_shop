@@ -53,7 +53,6 @@ const HopHelper = {
       const checkoutSession = await axios.post('/api/create-stripe-session', {
         item: cart,
       })
-      debugger
       const response = stripe.redirectToCheckout({
         sessionId: checkoutSession.data.id,
       })
