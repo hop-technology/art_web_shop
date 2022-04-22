@@ -13,7 +13,7 @@ const CartPage = () => {
   const cart = useSelector((state) => state.cart)
   const dispatch = useDispatch()
 
-  const handlepay = (data) => {
+  const handlePay = (data) => {
     setLoading(true)
     HopHelper.createCheckOutSession(data)
   }
@@ -91,7 +91,7 @@ const CartPage = () => {
             <h2>Grand Total: {HopHelper.totalPrice(cart)} SEK</h2>
             <button
               className='cart__confirm-order'
-              onClick={() => handlepay(cart)}
+              onClick={() => handlePay(cart)}
             >
               {loading ? 'Processing...' : 'Confirm and Pay'}
             </button>
