@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { errorMessage } from '../../redux/reducers/message.slice'
 const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 const stripePromise = loadStripe(publishableKey)
+const dispatch = useDispatch()
 
 const HopHelper = {
   totalPrice(data) {
@@ -39,9 +40,7 @@ const HopHelper = {
       })
       return response
     } catch (error) {
-      useDispatch(
-        errorMessage('Something went wrong, please try again later.')
-      )
+      dispatch(errorMessage('Something went wrong, please try again later.'))
     }
   },
 }

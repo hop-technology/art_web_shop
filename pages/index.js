@@ -6,10 +6,11 @@ import ProductCard from '../components/ProductCard'
 import PopUp from '../components/PopUp'
 import { successMessage, errorMessage } from '../redux/reducers/message.slice'
 
+const router = useRouter()
+const dispatch = useDispatch()
+
 const index = ({ products }) => {
-  const router = useRouter()
   const { status } = router.query
-  const dispatch = useDispatch()
 
   const paymentConfirmed = () => {
     dispatch(successMessage('Payment successful'))
