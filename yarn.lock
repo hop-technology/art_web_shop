@@ -1474,7 +1474,7 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@>=15.5.7, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -1499,6 +1499,13 @@ queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
+
+react-async-devtools@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/react-async-devtools/-/react-async-devtools-10.0.1.tgz#a2cffdd1b5eb15fc87e9e488aa5ccb02d4731fae"
+  integrity sha512-/OQSHdQNkDbB5EoElVmnza14I4x4Xn54bnz1TbyTfMEouyNhbUcSvEhCqHpvDomMKRzWbEbfUNUWsUky7/D/Pg==
+  optionalDependencies:
+    prop-types ">=15.5.7"
 
 react-dom@18.0.0:
   version "18.0.0"

@@ -86,7 +86,28 @@ body {
   padding-top: 3rem;
   padding-bottom: 2rem;
 }
-.cart button {
+.cart__confirm-order {
+  width: max-content;
+  padding: 1.2rem 3.2rem;
+  background-color: rgba(15, 15, 15, 0.349);
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-family: "Open Sans", sans-serif;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .cart__confirm-order {
+    margin-bottom: 5rem;
+  }
+}
+.cart__confirm-order:hover {
+  background-color: transparent;
+  transition: all 0.2s;
+}
+.cart__action-button {
   width: 2.5rem;
   height: 3rem;
   background-color: black;

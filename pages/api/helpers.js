@@ -30,7 +30,7 @@ const HopHelper = {
     try {
       const stripe = await stripePromise
       const checkoutSession = await axios.post('/api/create-stripe-session', {
-        item: cart[0],
+        item: cart,
       })
       const response = stripe.redirectToCheckout({
         sessionId: checkoutSession.data.id,

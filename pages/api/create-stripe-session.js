@@ -8,22 +8,24 @@ async function CreateStripeSession(req, res) {
       ? 'http://localhost:3000/'
       : 'https://art-web-shop.vercel.app/'
 
-  const stripeItem = {
-    price_data: {
-      ...item[0],
-      currency: 'sek',
-      product_data: {
-        name: item.slug,
+  const stripeItem = item.map((element) => {
+    return {
+      price_data: {
+        currency: 'sek',
+        product_data: {
+          images: [element.images[0].url],
+          name: element.slug,
+        },
+        unit_amount: element.price * 100,
       },
-      unit_amount: item.price * 100,
-    },
-    quantity: item.quantity,
-    description: item.description,
-  }
+      quantity: element.quantity,
+      description: element.description,
+    }
+  })
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card', 'klarna'],
-    line_items: [stripeItem],
+    line_items: stripeItem,
     mode: 'payment',
     success_url: redirectURL + '?status=success',
     cancel_url: redirectURL + '?status=cancel',
@@ -33,3 +35,4 @@ async function CreateStripeSession(req, res) {
 }
 
 export default CreateStripeSession
+

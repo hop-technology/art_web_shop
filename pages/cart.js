@@ -23,12 +23,14 @@ const CartPage = () => {
         <>
           <table className='cart__container'>
             <thead className='cart__header'>
-              <th>Image</th>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Actions</th>
-              <th>Total Price</th>
+              <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+                <th>Total Price</th>
+              </tr>
             </thead>
             {cart.map((item, index) => {
               return (
@@ -53,18 +55,23 @@ const CartPage = () => {
 
                     <td>
                       <button
+                        className='cart__action-button'
                         onClick={() => dispatch(decrementQuantity(item.id))}
                       >
                         {' '}
                         -{' '}
                       </button>
                       <button
+                        className='cart__action-button'
                         onClick={() => dispatch(incrementQuantity(item.id))}
                       >
                         {' '}
                         +{' '}
                       </button>
-                      <button onClick={() => dispatch(removeFromCart(item.id))}>
+                      <button
+                        className='cart__action-button'
+                        onClick={() => dispatch(removeFromCart(item.id))}
+                      >
                         {' '}
                         x{' '}
                       </button>
@@ -79,7 +86,12 @@ const CartPage = () => {
           </table>
           <div>
             <h2>Grand Total: {HopHelper.totalPrice(cart)} SEK</h2>
-            <button onClick={() => handlepay(cart)}>Confirm and Pay</button>
+            <button
+              className='cart__confirm-order'
+              onClick={() => handlepay(cart)}
+            >
+              Confirm and Pay
+            </button>
           </div>
         </>
       )}
