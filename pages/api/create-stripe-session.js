@@ -1,4 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+import HopHelper from '../api/helpers'
 
 async function CreateStripeSession(req, res) {
   const { item } = req.body
@@ -18,6 +19,7 @@ async function CreateStripeSession(req, res) {
         },
         unit_amount: element.price * 100,
       },
+
       quantity: element.quantity,
       description: element.description,
     }
@@ -25,9 +27,14 @@ async function CreateStripeSession(req, res) {
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card', 'klarna'],
+    shipping_address_collection: {
+      allowed_countries: ['SE', 'NO'],
+    },
+    shipping_options: [HopHelper.handleShipping(item)],
+
     line_items: stripeItem,
     mode: 'payment',
-    success_url: redirectURL + '?status=success', 
+    success_url: redirectURL + '?status=success',
     cancel_url: redirectURL + '?status=cancel',
   })
 
@@ -35,4 +42,3 @@ async function CreateStripeSession(req, res) {
 }
 
 export default CreateStripeSession
-

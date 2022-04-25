@@ -1,4 +1,3 @@
-import { GraphQLClient } from 'graphql-request'
 import getAllProducts from '../../lib/get-all-product'
 import getProductBySlug from '../../lib/get-product-slug'
 import ProductPage from '../../components/ProductPage'
@@ -6,10 +5,6 @@ import ProductPage from '../../components/ProductPage'
 const Product = ({ product }) => {
   return <ProductPage product={product} />
 }
-
-const graphcms = new GraphQLClient(
-  'https://api-eu-central-1.graphcms.com/v2/cl1uicit7b2dz01xj06675vpy/master'
-)
 
 export async function getStaticPaths({ locales }) {
   let paths = []

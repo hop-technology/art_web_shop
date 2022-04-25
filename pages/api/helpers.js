@@ -39,6 +39,14 @@ const HopHelper = {
     }
   },
 
+  handleShipping(cart) {
+    if (this.totalPrice(cart) > 10000) {
+      return { shipping_rate: 'shr_1KrM4GL7WvJmM60Hh3sFFJlf' }
+    } else {
+      return { shipping_rate: 'shr_1KrLXXL7WvJmM60HqbcmyWp4' }
+    }
+  },
+
   async createCheckOutSession(cart) {
     try {
       const stripe = await stripePromise
