@@ -53,10 +53,9 @@ const HopHelper = {
       const checkoutSession = await axios.post('/api/create-stripe-session', {
         item: cart,
       })
-      const response = stripe.redirectToCheckout({
-        sessionId: checkoutSession.data.id,
+      await stripe.redirectToCheckout({
+        sessionId: checkoutSession.data.session.id,
       })
-      return response
     } catch (error) {
       store.dispatch(
         errorMessage('Something went wrong, please try again later.')
