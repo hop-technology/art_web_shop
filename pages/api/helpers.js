@@ -1,5 +1,4 @@
 import { loadStripe } from '@stripe/stripe-js'
-import axios from 'axios'
 import store from '../../redux/store/store'
 import {
   errorMessage,
@@ -48,13 +47,20 @@ const HopHelper = {
   },
 
   async createCheckOutSession(cart) {
+    const stripe = await stripePromise
     try {
-      const stripe = await stripePromise
-      const checkoutSession = await axios.post('/api/create-stripe-session', {
-        item: cart,
+      const checkoutSession = await fetch('/api/create-stripe-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cart,
+          cancel_url: window.location.href,
+          success_url: `${window.location.origin}/success`,
+        }),
       })
+      let { session } = await checkoutSession.json()
       await stripe.redirectToCheckout({
-        sessionId: checkoutSession.data.session.id,
+        sessionId: session.id,
       })
     } catch (error) {
       store.dispatch(
