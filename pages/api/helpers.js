@@ -46,6 +46,8 @@ const HopHelper = {
     }
   },
 
+
+
   async createCheckOutSession(cart) {
     const stripe = await stripePromise
     try {
