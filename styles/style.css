@@ -461,8 +461,7 @@ body {
 .success {
   display: flex;
   flex-direction: column;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+  margin: 5rem 0;
   align-items: center;
 }
 .success__container {
@@ -510,8 +509,7 @@ body {
   color: inherit;
 }
 .success__total {
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+  margin: 5rem 0;
 }
 
 /*# sourceMappingURL=style.css.map */

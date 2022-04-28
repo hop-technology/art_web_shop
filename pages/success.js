@@ -29,17 +29,13 @@ function SuccessPage() {
       <div className='success__product-information'>
         <div>
           <h2>Delivery details</h2>
+          <p>{order.order.name}</p>
+          <p>{order.order.addressLine1}</p>
+          <p>{order.order.addressLine2 && order.order.addressLine2 + '\n'}</p>
           <p>
-            {order.order.name}
-            <br></br>
-            {order.order.addressLine1}
-            <br></br>
-            {order.order.addressLine2 && order.order.addressLine2 + '\n'}
             {order.order.city}, {order.order.postalCode}
-            <br></br>
-            {order.order.email}
-            <br></br>
           </p>
+          <p>{order.order.email}</p>
         </div>
         <div>
           <table className='success__container'>

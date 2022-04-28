@@ -1,8 +1,8 @@
 .success {
   display: flex;
   flex-direction: column;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+  margin: 5rem 0;
+
   align-items: center;
 
   &__container {
@@ -60,7 +60,6 @@
   }
 
   &__total {
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin: 5rem 0;
   }
 }
