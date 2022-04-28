@@ -34,9 +34,9 @@ function SuccessPage() {
             <th>Total Price</th>
           </tr>
         </thead>
-        {order.order.orderItems.map((item) => {
+        {order.order.orderItems.map((item, index) => {
           return (
-            <tbody>
+            <tbody key={index}>
               <tr className='success__content'>
                 <td>
                   <Image
