@@ -62,7 +62,7 @@ function SuccessPage() {
         <h3>
           Please contact us at{' '}
           <a href='artshop@walborgventures.com'>artshop@walborgventures.com</a>{' '}
-          or 08-123 56 78
+          or 08-123 56 78 for any questions.
         </h3>
       </div>
     </div>
