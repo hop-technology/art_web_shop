@@ -458,4 +458,58 @@ body {
   transition: all 0.2s;
 }
 
+.success {
+  display: flex;
+  flex-direction: column;
+  margin: 5rem 0;
+  align-items: center;
+}
+.success__container {
+  display: table;
+  width: 50%;
+  border: black solid 1px;
+}
+.success__product-information {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.success__product-information h2 {
+  margin-bottom: 5rem;
+}
+.success__product-information p {
+  line-height: 2rem;
+}
+.success__header {
+  vertical-align: bottom;
+}
+.success__header th {
+  text-align: center;
+  padding: 5rem;
+}
+.success__content {
+  vertical-align: center;
+}
+.success__content td {
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+}
+.success__message {
+  margin-bottom: 10rem;
+}
+.success__information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.success__information a {
+  color: inherit;
+}
+.success__total {
+  margin: 5rem 0;
+}
+
 /*# sourceMappingURL=style.css.map */

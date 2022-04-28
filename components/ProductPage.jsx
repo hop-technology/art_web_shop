@@ -3,6 +3,7 @@ import { addToCart } from '../redux/reducers/cart.slice'
 import { successMessage } from '../redux/reducers/message.slice'
 import { useDispatch, useSelector } from 'react-redux'
 import PopUp from './PopUp'
+import HopHelper from '../pages/api/helpers'
 
 const ProductPage = ({ product }) => {
   const cart = useSelector((state) => state.cart)
@@ -23,7 +24,7 @@ const ProductPage = ({ product }) => {
           <h1>{product.name}</h1>
           <div className='product-page__text'>
             <p>{product.description}</p>
-            <p>{product.price} SEK</p>
+            <p>{HopHelper.numberFormatter(product.price)}</p>
           </div>
           <div className='product-page__btn-container'>
             <button

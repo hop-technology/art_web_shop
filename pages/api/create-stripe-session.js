@@ -3,14 +3,9 @@ import HopHelper from '../api/helpers'
 
 async function CreateStripeSession(req, res) {
   try {
-    const { item } = req.body
+    const { items, success_url, cancel_url} = req.body
 
-    const redirectURL =
-      process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000/'
-        : 'https://art-web-shop.vercel.app/'
-
-    const stripeItem = item.map((element) => {
+    const stripeItem = items.map((element) => {
       return {
         price_data: {
           currency: 'sek',
@@ -19,7 +14,7 @@ async function CreateStripeSession(req, res) {
             name: element.slug,
             metadata: {
               productId: element.id,
-            }
+            },
           },
           unit_amount: element.price * 100,
         },
@@ -34,12 +29,11 @@ async function CreateStripeSession(req, res) {
       shipping_address_collection: {
         allowed_countries: ['SE', 'NO'],
       },
-      shipping_options: [HopHelper.handleShipping(item)],
-
+      shipping_options: [HopHelper.handleShipping(items)],
       line_items: stripeItem,
       mode: 'payment',
-      success_url: redirectURL + '?status=success',
-      cancel_url: redirectURL + '?status=cancel',
+      success_url: `${success_url}?id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${cancel_url}`,
     })
 
     res.status(201).json({ session })
