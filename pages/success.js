@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 import getOrderBySessionId from '../lib/get-order-session-id'
+import HopHelper from './api/helpers'
 
 function SuccessPage() {
   const router = useRouter()
@@ -67,13 +68,7 @@ function SuccessPage() {
                     <td>
                       <p>{item.quantity}</p>
                     </td>
-                    <td>
-                      {' '}
-                      {new Intl.NumberFormat('se-SE', {
-                        style: 'currency',
-                        currency: 'SEK',
-                      }).format(item.total / 100)}{' '}
-                    </td>
+                    <td>{HopHelper.numberFormatter(item.total / 100)}</td>
                   </tr>
                 </tbody>
               )
@@ -82,11 +77,7 @@ function SuccessPage() {
         </div>
         <div className='success__information'>
           <h2 className='success__total'>
-            Total Sum:{' '}
-            {new Intl.NumberFormat('se-SE', {
-              style: 'currency',
-              currency: 'SEK',
-            }).format(order.order.total)}
+            Total Sum: {HopHelper.numberFormatter(order.order.total)}
           </h2>
           <h3>
             Please contact us at{' '}

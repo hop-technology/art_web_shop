@@ -50,7 +50,7 @@ const CartPage = () => {
                       <p>{item.name}</p>
                     </td>
                     <td>
-                      <p>{item.price}</p>
+                      <p>{HopHelper.numberFormatter(item.price)}</p>
                     </td>
                     <td>
                       <p>{item.quantity}</p>
@@ -80,7 +80,9 @@ const CartPage = () => {
                       </button>
                     </td>
                     <td>
-                      <p>{item.quantity * item.price}</p>
+                      <p>
+                        {HopHelper.numberFormatter(item.quantity * item.price)}
+                      </p>
                     </td>
                   </tr>
                 </tbody>

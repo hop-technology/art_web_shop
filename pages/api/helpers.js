@@ -46,7 +46,14 @@ const HopHelper = {
     }
   },
 
+  numberFormatter(num) {
+    let formattedNumber = new Intl.NumberFormat('se-SE', {
+      style: 'currency',
+      currency: 'SEK',
+    }).format(num)
 
+    return formattedNumber
+  },
 
   async createCheckOutSession(cart) {
     const stripe = await stripePromise
