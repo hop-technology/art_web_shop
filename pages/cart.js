@@ -90,7 +90,10 @@ const CartPage = () => {
             })}
           </table>
           <div>
-            <h2>Grand Total: {HopHelper.totalPrice(cart)} SEK</h2>
+            <h2>
+              Grand Total:{' '}
+              {HopHelper.numberFormatter(HopHelper.totalPrice(cart))}{' '}
+            </h2>
             <button
               className='cart__confirm-order'
               onClick={() => handlePay(cart)}
