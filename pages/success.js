@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 import getOrderBySessionId from '../lib/get-order-session-id'
 
@@ -21,7 +22,46 @@ function SuccessPage() {
 
   if (loading) return 'loading'
 
-  return success ? <div>{order.orderItems?.product.name}</div> : 'none'
+  return success ? (
+    <div className='success'>
+      <h1 className='success__message'>Thank you for your order!</h1>
+      <table className='success__container'>
+        <thead className='success__header'>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        {order.order.orderItems.map((item) => {
+          return (
+            <tbody>
+              <tr className='success__content'>
+                <td>
+                  <Image
+                    src={item.product.images[0].url}
+                    height='100'
+                    width='100'
+                  />
+                </td>
+                <td>
+                  <p>{item.product.name}</p>
+                </td>
+                <td>
+                  <p>{item.quantity}</p>
+                </td>
+                <td>{item.total / 100}</td>
+              </tr>
+            </tbody>
+          )
+        })}
+      </table>
+      <h2 className='success__total'>Total Sum: {order.order.total}</h2>
+    </div>
+  ) : (
+    'none'
+  )
 }
 
 export default SuccessPage

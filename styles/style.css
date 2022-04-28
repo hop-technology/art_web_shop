@@ -458,4 +458,37 @@ body {
   transition: all 0.2s;
 }
 
+.success {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  height: 100vh;
+  align-items: center;
+}
+.success__container {
+  display: table;
+  width: 50%;
+}
+.success__header {
+  vertical-align: bottom;
+}
+.success__header th {
+  text-align: center;
+}
+.success__content {
+  vertical-align: center;
+}
+.success__content td {
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+.success__message {
+  margin-bottom: 10rem;
+}
+.success__total {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
 /*# sourceMappingURL=style.css.map */

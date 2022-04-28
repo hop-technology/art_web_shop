@@ -1,0 +1,39 @@
+.success {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  height: 100vh;
+  align-items: center;
+
+  &__container {
+    display: table;
+    width: 50%;
+  }
+
+  &__header {
+    vertical-align: bottom;
+
+    th {
+      text-align: center;
+    }
+  }
+
+  &__content {
+    vertical-align: center;
+
+    td {
+      text-align: center;
+      padding-top: 3rem;
+      padding-bottom: 2rem;
+    }
+  }
+
+  &__message {
+      margin-bottom: 10rem;
+  }
+
+  &__total {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+}
