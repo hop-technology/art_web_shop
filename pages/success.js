@@ -31,7 +31,10 @@ function SuccessPage() {
           <p>
             {order.order.name}
             <br></br>
-            {order.order.address}
+            {order.order.addressLine1}
+            <br></br>
+            {order.order.addressLine2 && order.order.addressLine2 + '\n'}
+            {order.order.city}, {order.order.postalCode}
             <br></br>
             {order.order.email}
             <br></br>
@@ -64,7 +67,13 @@ function SuccessPage() {
                     <td>
                       <p>{item.quantity}</p>
                     </td>
-                    <td>{item.total / 100}</td>
+                    <td>
+                      {' '}
+                      {new Intl.NumberFormat('se-SE', {
+                        style: 'currency',
+                        currency: 'SEK',
+                      }).format(item.total / 100)}{' '}
+                    </td>
                   </tr>
                 </tbody>
               )
@@ -72,7 +81,13 @@ function SuccessPage() {
           </table>
         </div>
         <div className='success__information'>
-          <h2 className='success__total'>Total Sum: {order.order.total}</h2>
+          <h2 className='success__total'>
+            Total Sum:{' '}
+            {new Intl.NumberFormat('se-SE', {
+              style: 'currency',
+              currency: 'SEK',
+            }).format(order.order.total)}
+          </h2>
           <h3>
             Please contact us at{' '}
             <a href='artshop@walborgventures.com'>
