@@ -2,19 +2,22 @@
   display: flex;
   flex-direction: column;
   margin-top: 5rem;
-  height: 100vh;
+  margin-bottom: 5rem;
   align-items: center;
 
   &__container {
     display: table;
     width: 50%;
+    border: black solid 1px;
   }
 
   &__header {
     vertical-align: bottom;
+  
 
     th {
       text-align: center;
+      padding: 5rem;
     }
   }
 
@@ -24,12 +27,21 @@
     td {
       text-align: center;
       padding-top: 3rem;
-      padding-bottom: 2rem;
+      padding-bottom: 5rem;
     }
   }
 
   &__message {
-      margin-bottom: 10rem;
+    margin-bottom: 10rem;
+  }
+
+  &__information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    a {
+      color: inherit;
+    }
   }
 
   &__total {

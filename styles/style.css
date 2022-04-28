@@ -462,18 +462,20 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 5rem;
-  height: 100vh;
+  margin-bottom: 5rem;
   align-items: center;
 }
 .success__container {
   display: table;
   width: 50%;
+  border: black solid 1px;
 }
 .success__header {
   vertical-align: bottom;
 }
 .success__header th {
   text-align: center;
+  padding: 5rem;
 }
 .success__content {
   vertical-align: center;
@@ -481,10 +483,18 @@ body {
 .success__content td {
   text-align: center;
   padding-top: 3rem;
-  padding-bottom: 2rem;
+  padding-bottom: 5rem;
 }
 .success__message {
   margin-bottom: 10rem;
+}
+.success__information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.success__information a {
+  color: inherit;
 }
 .success__total {
   margin-top: 5rem;

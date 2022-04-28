@@ -57,7 +57,14 @@ function SuccessPage() {
           )
         })}
       </table>
-      <h2 className='success__total'>Total Sum: {order.order.total}</h2>
+      <div className='success__information'>
+        <h2 className='success__total'>Total Sum: {order.order.total}</h2>
+        <h3>
+          Please contact us at{' '}
+          <a href='artshop@walborgventures.com'>artshop@walborgventures.com</a>{' '}
+          or 08-123 56 78
+        </h3>
+      </div>
     </div>
   ) : (
     'none'
