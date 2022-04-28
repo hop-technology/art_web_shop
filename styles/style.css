@@ -470,6 +470,19 @@ body {
   width: 50%;
   border: black solid 1px;
 }
+.success__product-information {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.success__product-information h2 {
+  margin-bottom: 5rem;
+}
+.success__product-information p {
+  line-height: 2rem;
+}
 .success__header {
   vertical-align: bottom;
 }

@@ -11,9 +11,24 @@
     border: black solid 1px;
   }
 
+  &__product-information {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+
+    h2 {
+      margin-bottom: 5rem;
+    }
+
+    p {
+      line-height: 2rem;
+    }
+  }
+
   &__header {
     vertical-align: bottom;
-  
 
     th {
       text-align: center;
