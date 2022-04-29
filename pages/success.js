@@ -5,7 +5,7 @@ import Image from 'next/image'
 import getOrderBySessionId from '../lib/get-order-session-id'
 import HopHelper from './api/helpers'
 
-function SuccessPage() {
+const SuccessPage = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [order, setOrder] = useState(null)

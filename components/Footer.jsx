@@ -6,7 +6,7 @@ import { useSettingsContext } from '../context/settings'
 import { currencies, locales } from '../graphcms.config'
 import { Select } from './form/form'
 
-function Footer({ categories = [] }) {
+const Footer = ({ categories = [] }) => {
   const router = useRouter()
   const { activeCurrency, switchCurrency } = useSettingsContext()
 

@@ -7,7 +7,7 @@ import ProductPage from '../../components/ProductPage'
 
 //import SEO from '../../components/seo'
 
-function CategoryPage({ category }) {
+const CategoryPage = ({ category }) => {
   return (
     <>
       <ProductPage product={category.products} />

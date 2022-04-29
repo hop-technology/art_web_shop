@@ -2,7 +2,7 @@ import React from 'react'
 import Footer from './Footer'
 import Navbar from './Navbar'
 
-function Layout({ children, footer }) {
+const Layout = ({ children, footer }) => {
   return (
     <>
       <Navbar />
@@ -11,6 +11,5 @@ function Layout({ children, footer }) {
     </>
   )
 }
-
 
 export default Layout

@@ -1,8 +1,7 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { FormProvider, useFormContext } from 'react-hook-form'
 
-
-function Form({ children, methods, onSubmit, ...props }) {
+const Form = ({ children, methods, onSubmit, ...props }) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={onSubmit} {...props}>
@@ -12,7 +11,7 @@ function Form({ children, methods, onSubmit, ...props }) {
   )
 }
 
-const Input = React.forwardRef(
+const Input = forwardRef(
   (
     {
       children,
@@ -41,7 +40,7 @@ const Input = React.forwardRef(
   }
 )
 
-const Select = React.forwardRef(
+const Select = forwardRef(
   (
     {
       children,
@@ -89,7 +88,7 @@ const Select = React.forwardRef(
   }
 )
 
-const Textarea = React.forwardRef(
+const Textarea = forwardRef(
   (
     {
       children,

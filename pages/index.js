@@ -7,7 +7,7 @@ import HopHelper from './api/helpers'
 import { useEffect } from 'react'
 import getPageData from '../lib/get-page-data'
 
-function Index({ products }) {
+const Index = ({ products }) => {
   const router = useRouter()
   const { status } = router.query
 
