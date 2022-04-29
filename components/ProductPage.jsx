@@ -47,26 +47,35 @@ function ProductPage({ product }) {
         </div>
       )
     } else {
-      return data.map((item, index) => {
-        return (
-          <div className='product-page' key={index}>
-            <div className='product-page__container'>
-              <h1>{item.name}</h1>
-              <div className='product-page__text'>
-                <p>{HopHelper.numberFormatter(item.price)}</p>
-              </div>
-            </div>
-            <div className='product-page__image'>
-              <Image
-                src={item.images[0].url}
-                alt={item.name}
-                height={600}
-                width={600}
-              />
-            </div>
+      return (
+        <div className='categories'>
+          <div className='categories__title'>
+            <h1>{router.query.slug}</h1>
           </div>
-        )
-      })
+          <div className='categories__grid'>
+            {data.map((item, index) => {
+              return (
+                <div key={index}>
+                  <div>
+                    <h1>{item.name}</h1>
+                    <div>
+                      <p>{HopHelper.numberFormatter(item.price)}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <Image
+                      src={item.images[0].url}
+                      alt={item.name}
+                      height={200}
+                      width={200}
+                    />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )
     }
   }
 
