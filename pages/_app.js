@@ -1,16 +1,18 @@
 import { Provider } from 'react-redux'
+import { SettingsProvider } from '../context/settings'
 import store from '../redux/store/store'
 import '../styles/style.css'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import Layout from '../components/layout'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider store={store}>
-      <Navbar />
-      <Component {...pageProps} />
-      <Footer />
-    </Provider>
+    <SettingsProvider>
+      <Provider store={store}>
+        <Layout {...pageProps}>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
+    </SettingsProvider>
   )
 }
 

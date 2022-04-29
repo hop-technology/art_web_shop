@@ -2,7 +2,7 @@ import getAllProducts from '../../lib/get-all-product'
 import getProductBySlug from '../../lib/get-product-slug'
 import ProductPage from '../../components/ProductPage'
 
-const Product = ({ product }) => {
+function Product({ product }) {
   return <ProductPage product={product} />
 }
 

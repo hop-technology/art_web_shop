@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import PopUp from './PopUp'
 import HopHelper from '../pages/api/helpers'
 
-const ProductPage = ({ product }) => {
-  const cart = useSelector((state) => state.cart)
+function ProductPage({ product }) {
   const message = useSelector((state) => state.message)
   const dispatch = useDispatch()
 

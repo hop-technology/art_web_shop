@@ -5,8 +5,9 @@ import ProductCard from '../components/ProductCard'
 import PopUp from '../components/PopUp'
 import HopHelper from './api/helpers'
 import { useEffect } from 'react'
+import getPageData from '../lib/get-page-data'
 
-const Index = ({ products }) => {
+function Index({ products }) {
   const router = useRouter()
   const { status } = router.query
 
@@ -30,10 +31,12 @@ const Index = ({ products }) => {
 export default Index
 
 export async function getStaticProps({ locale }) {
+  const pageData = await getPageData({ locale })
   const { products } = await getAllProducts({ locale })
 
   return {
     props: {
+      ...pageData,
       products,
     },
   }
