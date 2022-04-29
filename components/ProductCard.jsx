@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-function ProductCard({ products }) {
+const ProductCard = ({ products }) => {
   return products.map((product, slug) => {
     return (
       <Link href={`/products/${product.slug}`} key={slug}>

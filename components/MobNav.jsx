@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-function MobNav({ show, close }) {
+const MobNav = ({ show, close }) => {
   const [scrollY, setScrollY] = useState(0)
   const logit = () => {
     setScrollY(window.pageYOffset)

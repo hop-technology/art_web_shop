@@ -5,7 +5,7 @@ import Link from 'next/link'
 import MobNav from './MobNav'
 import HopHelper from '../pages/api/helpers'
 
-function Navbar() {
+const Navbar = () => {
   const cart = useSelector((state) => state.cart)
   const [mobNav, setMobNav] = useState(false)
   const Toggle = () => setMobNav(!mobNav)
