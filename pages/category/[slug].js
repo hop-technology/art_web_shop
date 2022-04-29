@@ -10,7 +10,7 @@ import ProductPage from '../../components/ProductPage'
 function CategoryPage({ category }) {
   return (
     <>
-      <ProductPage products={category.products} />
+      <ProductPage product={category.products} />
     </>
   )
 }
