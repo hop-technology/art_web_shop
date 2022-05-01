@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import { FormProvider, useFormContext } from 'react-hook-form'
 
-const Form = ({ children, methods, onSubmit, ...props }) => {
+function Form({ children, methods, onSubmit, ...props }) {
   return (
     <FormProvider {...methods}>
       <form onSubmit={onSubmit} {...props}>
