@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import { FormProvider, useFormContext } from 'react-hook-form'
 
-function Form({ children, methods, onSubmit, ...props }) {
+const Form = ({ children, methods, onSubmit, ...props }) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={onSubmit} {...props}>
@@ -165,9 +165,8 @@ function FormTextarea(props) {
   )
 }
 
-Form.Input = FormInput
-Form.Select = FormSelect
-Form.Textarea = FormTextarea
+Form.displayName = FormInput
+
 
 export default Form
 
