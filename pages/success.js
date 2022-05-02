@@ -5,7 +5,7 @@ import Image from 'next/image'
 import getOrderBySessionId from '../lib/get-order-session-id'
 import HopHelper from './api/helpers'
 
-function SuccessPage() {
+const SuccessPage = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [order, setOrder] = useState(null)
@@ -56,6 +56,7 @@ function SuccessPage() {
                         src={item.product.images[0].url}
                         height='100'
                         width='100'
+                        alt={item.product.name}
                       />
                     </td>
                     <td>

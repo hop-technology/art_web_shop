@@ -1,49 +1,40 @@
 .footer {
-  background-color: $color-primary-dark;
+  background-color: $color-primary-light;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   width: 100%;
   bottom: 0;
 
   .content {
+    width: 100%;
     padding: 2% 0;
     display: flex;
+    //flex-direction: row;
     align-items: center;
     justify-content: space-around;
     @include respond(tab-port) {
       flex-direction: column;
     }
 
-    &__contact {
-      font-weight: 300;
-      display: flex;
-      justify-content: space-between;
-      color: $color-text-light-trans;
-      @include respond(phone-L) {
-        flex-direction: column;
-      }
-      &--item {
-        padding: 1rem 2rem;
+    a {
+      color: white;
+    }
 
-        &:not(:last-child) {
-          border-right: 1px solid rgba(255, 255, 255, 0.5);
-          @include respond(phone-L) {
-            border: none;
-          }
-        }
-        @include respond(phone-L) {
-          border: none;
-          padding: 2rem 0;
-          text-align: center;
-        }
+    &__image {
+      width: 50%;
+    }
+
+    &__selection {
+      width: 50%;
+    }
+    &__categories {
+      width: 50%;
+     
+      ol {
+        list-style-type: none;
       }
     }
-  }
-
-  .copy-right {
-    text-align: center;
-    font-weight: 300;
-    font-size: 1.2rem;
-    padding: 2rem 0;
-    color: rgba(255, 255, 255, 0.733);
   }
 }

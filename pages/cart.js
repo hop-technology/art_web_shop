@@ -7,11 +7,13 @@ import {
   removeFromCart,
 } from '../redux/reducers/cart.slice'
 import HopHelper from './api/helpers'
+import { useSettingsContext } from '../context/settings'
 
 const CartPage = () => {
   const [loading, setLoading] = useState(false)
   const cart = useSelector((state) => state.cart)
   const dispatch = useDispatch()
+  const { activeCurrency } = useSettingsContext()
 
   const handlePay = (data) => {
     setLoading(true)
@@ -44,13 +46,19 @@ const CartPage = () => {
                         src={item.images[0].url}
                         height='100'
                         width='100'
+                        alt={item.name}
                       />
                     </td>
                     <td>
                       <p>{item.name}</p>
                     </td>
                     <td>
-                      <p>{HopHelper.numberFormatter(item.price)}</p>
+                      <p>
+                        {HopHelper.numberFormatter({
+                          currency: activeCurrency,
+                          value: item.price,
+                        })}
+                      </p>
                     </td>
                     <td>
                       <p>{item.quantity}</p>
@@ -81,7 +89,10 @@ const CartPage = () => {
                     </td>
                     <td>
                       <p>
-                        {HopHelper.numberFormatter(item.quantity * item.price)}
+                        {HopHelper.numberFormatter({
+                          currency: activeCurrency,
+                          value: item.quantity * item.price,
+                        })}
                       </p>
                     </td>
                   </tr>
@@ -92,7 +103,10 @@ const CartPage = () => {
           <div>
             <h2>
               Grand Total:{' '}
-              {HopHelper.numberFormatter(HopHelper.totalPrice(cart))}{' '}
+              {HopHelper.numberFormatter({
+                currency: activeCurrency,
+                value: HopHelper.totalPrice(cart),
+              })}
             </h2>
             <button
               className='cart__confirm-order'
