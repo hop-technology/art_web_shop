@@ -47,7 +47,7 @@ const HopHelper = {
   },
 
   numberFormatter({ currency, value }) {
-    if (currency?.code === 'SEK') {
+    if (currency.code === 'SEK') {
       let formattedNumber = new Intl.NumberFormat('se-SE', {
         style: 'currency',
         currency: currency.code,
