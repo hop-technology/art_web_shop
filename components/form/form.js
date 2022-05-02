@@ -166,9 +166,9 @@ const FormTextarea = (props) => {
   )
 }
 
-Form.FormInput = FormInput
-Form.FormSelect = FormSelect
-Form.FormTextarea = FormTextarea
+FormInput.displayName = 'FormInput'
+FormSelect.displayName = 'FormSelect'
+FormTextarea.displayName = 'FormTextarea'
 
 export default Form
 
