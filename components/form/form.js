@@ -12,7 +12,7 @@ const Form = ({ children, methods, onSubmit, ...props }) => {
   )
 }
 
-const Input = forwardRef(
+/* const Input = forwardRef(
   (
     {
       children,
@@ -39,7 +39,7 @@ const Input = forwardRef(
       </fieldset>
     )
   }
-)
+) */
 
 const Select = forwardRef(
   (
@@ -88,8 +88,9 @@ const Select = forwardRef(
     )
   }
 )
+Select.displayName = 'Select'
 
-const Textarea = forwardRef(
+/* const Textarea = forwardRef(
   (
     {
       children,
@@ -118,9 +119,9 @@ const Textarea = forwardRef(
       </fieldset>
     )
   }
-)
+) 
 
-const FormInput = (props) => {
+ const FormInput = (props) => {
   const { errors, register } = useFormContext()
 
   return (
@@ -134,7 +135,7 @@ const FormInput = (props) => {
       </Input>
     </>
   )
-}
+} */
 
 const FormSelect = (props) => {
   const { errors, register } = useFormContext()
@@ -150,7 +151,7 @@ const FormSelect = (props) => {
   )
 }
 
-const FormTextarea = (props) => {
+/* const FormTextarea = (props) => {
   const { errors, register } = useFormContext()
 
   return (
@@ -164,12 +165,12 @@ const FormTextarea = (props) => {
       </Textarea>
     </>
   )
-}
+} */
 
-FormInput.displayName = 'FormInput'
-FormSelect.displayName = 'FormSelect'
-FormTextarea.displayName = 'FormTextarea'
+/* FormInput.displayName = 'FormInput'
+FormTextarea.displayName = 'FormTextarea' */
+Form.Select = FormSelect
 
 export default Form
 
-export { Input, Select, Textarea }
+export { Select }

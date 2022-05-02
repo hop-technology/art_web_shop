@@ -40,13 +40,11 @@ const Footer = ({ categories = [] }) => {
         </div>
         <div className='content__categories'>
           {categories.map((category) => (
-            <ol>
-              <li key={category.id}>
-                <Link href={`/${category.type.toLowerCase()}/${category.slug}`}>
-                  <a>{category.name}</a>
-                </Link>
-              </li>
-            </ol>
+            <li key={category.id}>
+              <Link href={`/${category.type.toLowerCase()}/${category.slug}`}>
+                <a>{category.name}</a>
+              </Link>
+            </li>
           ))}
         </div>
         <div className='content__selection'>
