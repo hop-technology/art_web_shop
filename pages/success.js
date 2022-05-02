@@ -14,13 +14,21 @@ const SuccessPage = () => {
   const { activeCurrency } = useSettingsContext()
 
   const handleEmail = async (data) => {
+    let products = data.orderItems.product?.map((item) => {
+      return {
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+      }
+    })
+
     try {
       await fetch('/api/email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data, products),
       })
     } catch (error) {
       console.error(error)

@@ -10,7 +10,7 @@ export default async (req, res) => {
     postalCode,
     addressLine1,
     addressLine2,
-    ...orderItems
+    ...products
   } = req.body
   const msg = {
     to: email,
@@ -34,6 +34,11 @@ export default async (req, res) => {
           <p>${email}</p>
         </div>
         <div className='success__information'>
+          <h2>Order information</h2>
+          <p>
+          ${products}
+          
+          </p>
           <h3>
             Please contact us at
             <a href='artshop@walborgventures.com'>
