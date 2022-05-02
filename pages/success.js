@@ -13,11 +13,26 @@ const SuccessPage = () => {
   const [success, setSuccess] = useState(false)
   const { activeCurrency } = useSettingsContext()
 
+  const handleEmail = async (data) => {
+    try {
+      await fetch('/api/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
     const fetchOrder = async () => {
       const order = await getOrderBySessionId({ id: router.query.id })
       setLoading(false)
       setOrder(order.order)
+      handleEmail(order.order)
       setSuccess(true)
     }
     if (router.query.id) fetchOrder()
