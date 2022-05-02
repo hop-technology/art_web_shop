@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/display-name
 import { forwardRef } from 'react'
 import { FormProvider, useFormContext } from 'react-hook-form'
 
@@ -119,7 +120,7 @@ const Textarea = forwardRef(
   }
 )
 
-function FormInput(props) {
+const FormInput = (props) => {
   const { errors, register } = useFormContext()
 
   return (
@@ -135,7 +136,7 @@ function FormInput(props) {
   )
 }
 
-function FormSelect(props) {
+const FormSelect = (props) => {
   const { errors, register } = useFormContext()
 
   return (
@@ -149,7 +150,7 @@ function FormSelect(props) {
   )
 }
 
-function FormTextarea(props) {
+const FormTextarea = (props) => {
   const { errors, register } = useFormContext()
 
   return (
@@ -165,8 +166,9 @@ function FormTextarea(props) {
   )
 }
 
-Form.displayName = FormInput
-
+Form.FormInput = FormInput
+Form.FormSelect = FormSelect
+Form.FormTextarea = FormTextarea
 
 export default Form
 
