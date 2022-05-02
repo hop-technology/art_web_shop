@@ -44,6 +44,7 @@ const CartPage = () => {
                         src={item.images[0].url}
                         height='100'
                         width='100'
+                        alt={item.name}
                       />
                     </td>
                     <td>

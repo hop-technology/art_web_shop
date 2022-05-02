@@ -56,6 +56,7 @@ const SuccessPage = () => {
                         src={item.product.images[0].url}
                         height='100'
                         width='100'
+                        alt={item.product.name}
                       />
                     </td>
                     <td>

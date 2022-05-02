@@ -1,4 +1,3 @@
-// eslint-disable-next-line react/display-name
 import { forwardRef } from 'react'
 import { FormProvider, useFormContext } from 'react-hook-form'
 
@@ -12,7 +11,7 @@ const Form = ({ children, methods, onSubmit, ...props }) => {
   )
 }
 
-/* const Input = forwardRef(
+const Input = forwardRef(
   (
     {
       children,
@@ -32,14 +31,14 @@ const Form = ({ children, methods, onSubmit, ...props }) => {
           type={type}
           disabled={disabled}
           placeholder={placeholder}
-          className='appearance-none min-w-0 w-full bg-white border border-gray-300 py-2 px-4 text-base rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:placeholder-gray-400'
+          className=''
           ref={ref}
         />
         {children}
       </fieldset>
     )
   }
-) */
+)
 
 const Select = forwardRef(
   (
@@ -58,7 +57,7 @@ const Select = forwardRef(
     return (
       <fieldset className={className}>
         {label ? (
-          <label htmlFor={field} className='sr-only'>
+          <label htmlFor={field} className=''>
             {label}
           </label>
         ) : null}
@@ -68,7 +67,7 @@ const Select = forwardRef(
             name={field}
             disabled={disabled}
             defaultValue={defaultValue}
-            className='appearance-none block w-full bg-none bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-base text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+            className=''
             ref={ref}
             {...props}
           >
@@ -81,7 +80,7 @@ const Select = forwardRef(
               </option>
             ))}
           </select>
-          <div className='pointer-events-none absolute inset-y-0 right-0 px-2 flex items-center'></div>
+          <div className=''></div>
         </div>
         {children}
       </fieldset>
@@ -90,7 +89,7 @@ const Select = forwardRef(
 )
 Select.displayName = 'Select'
 
-/* const Textarea = forwardRef(
+const Textarea = forwardRef(
   (
     {
       children,
@@ -112,30 +111,30 @@ Select.displayName = 'Select'
           disabled={disabled}
           placeholder={placeholder}
           rows={rows}
-          className='appearance-none min-w-0 w-full bg-white border border-gray-300 py-2 px-4 text-base rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:placeholder-gray-400'
+          className=''
           ref={ref}
         />
         {children}
       </fieldset>
     )
   }
-) 
+)
 
- const FormInput = (props) => {
+Textarea.displayName = 'Textarea'
+
+const FormInput = (props) => {
   const { errors, register } = useFormContext()
 
   return (
     <>
       <Input ref={register} {...props}>
-        {errors?.[props.field] ? (
-          <p className='mt-2 text-red-700 text-sm'>
-            {errors[props.field].message}
-          </p>
-        ) : null}
+        {errors?.[props.field] ? <p>{errors[props.field].message}</p> : null}
       </Input>
     </>
   )
-} */
+}
+
+FormInput.displayName = 'FormInput'
 
 const FormSelect = (props) => {
   const { errors, register } = useFormContext()
@@ -143,34 +142,30 @@ const FormSelect = (props) => {
   return (
     <Select ref={register} {...props}>
       {errors?.[props.field] ? (
-        <p className='mt-2 text-red-700 text-sm'>
-          {errors[props.field].message}
-        </p>
+        <p className=''>{errors[props.field].message}</p>
       ) : null}
     </Select>
   )
 }
 
-/* const FormTextarea = (props) => {
+const FormTextarea = (props) => {
   const { errors, register } = useFormContext()
 
   return (
     <>
       <Textarea ref={register} {...props}>
         {errors?.[props.field] ? (
-          <p className='mt-2 text-red-700 text-sm'>
-            {errors[props.field].message}
-          </p>
+          <p className=''>{errors[props.field].message}</p>
         ) : null}
       </Textarea>
     </>
   )
-} */
+}
 
-/* FormInput.displayName = 'FormInput'
-FormTextarea.displayName = 'FormTextarea' */
+Form.FormInput = FormInput
+Form.FormTextarea = FormTextarea
 Form.Select = FormSelect
 
 export default Form
 
-export { Select }
+export { Select, Textarea, Input }
