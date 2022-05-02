@@ -40,6 +40,8 @@ const Input = forwardRef(
   }
 )
 
+Input.displayName = 'Input'
+
 const Select = forwardRef(
   (
     {

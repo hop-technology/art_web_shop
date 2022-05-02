@@ -46,11 +46,11 @@ const HopHelper = {
     }
   },
 
-  numberFormatter(num) {
+  numberFormatter(currency, value) {
     let formattedNumber = new Intl.NumberFormat('se-SE', {
       style: 'currency',
-      currency: 'SEK',
-    }).format(num)
+      currency: currency.code,
+    }).format(value / 100)
 
     return formattedNumber
   },
