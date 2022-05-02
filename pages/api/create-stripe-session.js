@@ -3,7 +3,7 @@ import HopHelper from '../api/helpers'
 
 async function CreateStripeSession(req, res) {
   try {
-    const { items, success_url, cancel_url} = req.body
+    const { items, success_url, cancel_url, locale } = req.body
 
     const stripeItem = items.map((element) => {
       return {
@@ -32,6 +32,7 @@ async function CreateStripeSession(req, res) {
       shipping_options: [HopHelper.handleShipping(items)],
       line_items: stripeItem,
       mode: 'payment',
+      locale,
       success_url: `${success_url}?id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${cancel_url}`,
     })

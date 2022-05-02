@@ -7,9 +7,11 @@ import HopHelper from './api/helpers'
 import { useEffect } from 'react'
 import getPageData from '../lib/get-page-data'
 
+
 const Index = ({ products }) => {
   const router = useRouter()
   const { status } = router.query
+  
 
   useEffect(() => {
     HopHelper.popupStatus(status)
@@ -21,7 +23,7 @@ const Index = ({ products }) => {
       <div>
         <div className='homepage'>
           <PopUp />
-          <ProductCard products={products} />
+          <ProductCard products={products}  />
         </div>
       </div>
     </>

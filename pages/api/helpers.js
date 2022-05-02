@@ -46,13 +46,20 @@ const HopHelper = {
     }
   },
 
-  numberFormatter(currency, value) {
-    let formattedNumber = new Intl.NumberFormat('se-SE', {
-      style: 'currency',
-      currency: currency.code,
-    }).format(value / 100)
-
-    return formattedNumber
+  numberFormatter({ currency, value }) {
+    if (currency?.code === 'SEK') {
+      let formattedNumber = new Intl.NumberFormat('se-SE', {
+        style: 'currency',
+        currency: currency.code,
+      }).format(value)
+      return formattedNumber
+    } else {
+      let formattedNumber = new Intl.NumberFormat('se-SE', {
+        style: 'currency',
+        currency: currency.code,
+      }).format(value / 10)
+      return formattedNumber
+    }
   },
 
   async createCheckOutSession(cart) {

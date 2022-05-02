@@ -5,9 +5,11 @@ import { successMessage } from '../redux/reducers/message.slice'
 import { useDispatch, useSelector } from 'react-redux'
 import PopUp from './PopUp'
 import HopHelper from '../pages/api/helpers'
+import { useSettingsContext } from '../context/settings'
 
 const ProductPage = ({ product }) => {
   const message = useSelector((state) => state.message)
+  const { activeCurrency } = useSettingsContext()
   const dispatch = useDispatch()
   const router = useRouter()
 
@@ -25,7 +27,12 @@ const ProductPage = ({ product }) => {
             <h1>{data.name}</h1>
             <div className='product-page__text'>
               <p>{data.description}</p>
-              <p>{HopHelper.numberFormatter(data.price)}</p>
+              <p>
+                {HopHelper.numberFormatter({
+                  currency: activeCurrency,
+                  value: data.price,
+                })}
+              </p>
             </div>
             <div className='product-page__btn-container'>
               <button
