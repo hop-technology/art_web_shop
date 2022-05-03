@@ -34,7 +34,7 @@ const SuccessPage = () => {
           <h2>Delivery details</h2>
           <p>{order.name}</p>
           <p>{order.addressLine1}</p>
-          <p>{order.addressLine2 && order.order.addressLine2 + '\n'}</p>
+          <p>{order.addressLine2 && order.addressLine2 + '\n'}</p>
           <p>
             {order.city}, {order.postalCode}
           </p>
