@@ -1,7 +1,7 @@
 const Button = ({ children, ...props }) => {
   return (
     <button {...props}>
-      <p>{children}</p>
+      {children}
     </button>
   )
 }
