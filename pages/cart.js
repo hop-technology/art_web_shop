@@ -69,18 +69,21 @@ const CartPage = () => {
                       <Button
                         className='cart__action-button'
                         onClick={() => dispatch(decrementQuantity(item.id))}
-                        children='-'
-                      />
+                      >
+                        -
+                      </Button>
                       <Button
                         className='cart__action-button'
                         onClick={() => dispatch(incrementQuantity(item.id))}
-                        children='+'
-                      />
+                      >
+                        +
+                      </Button>
                       <Button
                         className='cart__action-button'
                         onClick={() => dispatch(removeFromCart(item.id))}
-                        children='x'
-                      />
+                      >
+                        x
+                      </Button>
                     </td>
                     <td>
                       <p>
@@ -106,8 +109,9 @@ const CartPage = () => {
             <Button
               className='cart__confirm-order'
               onClick={() => handlePay(cart)}
-              children={loading ? 'Processing...' : 'Confirm and Pay'}
-            />
+            >
+              {loading ? 'Processing...' : 'Confirm and Pay'}
+            </Button>
           </div>
         </>
       )}

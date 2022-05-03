@@ -17,11 +17,9 @@ const SingleProduct = ({ props, activeCurrency, addToCart }) => {
           </p>
         </div>
         <div className='product-page__btn-container'>
-          <Button
-            onClick={addToCart}
-            className='product-page__btn'
-            children='Add to cart'
-          />
+          <Button onClick={addToCart} className='product-page__btn'>
+            Add to cart
+          </Button>
         </div>
       </div>
       <div className='product-page__image'>
