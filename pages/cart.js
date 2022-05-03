@@ -7,7 +7,7 @@ import {
   removeFromCart,
 } from '../redux/reducers/cart.slice'
 import HopHelper from './api/helpers'
-import Button from '../components/Button'
+import Button from '../components/ui/Button'
 import { useSettingsContext } from '../context/settings'
 
 const CartPage = () => {

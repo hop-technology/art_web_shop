@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Button from './Button'
+import Button from './ui/Button'
 import HopHelper from '../pages/api/helpers'
 
 const SingleProduct = ({ props, activeCurrency, addToCart }) => {

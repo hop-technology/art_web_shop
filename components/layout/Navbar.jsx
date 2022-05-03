@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import MobNav from './MobNav'
-import HopHelper from '../pages/api/helpers'
+import HopHelper from '../../pages/api/helpers'
 
 const Navbar = () => {
   const cart = useSelector((state) => state.cart)
