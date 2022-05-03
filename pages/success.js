@@ -4,18 +4,21 @@ import Image from 'next/image'
 
 import getOrderBySessionId from '../lib/get-order-session-id'
 import HopHelper from './api/helpers'
+import { useSettingsContext } from '../context/settings'
 
 const SuccessPage = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [order, setOrder] = useState(null)
   const [success, setSuccess] = useState(false)
+  const { activeCurrency } = useSettingsContext()
 
   useEffect(() => {
+    const { id } = router.query
     const fetchOrder = async () => {
-      const order = await getOrderBySessionId({ id: router.query.id })
+      const order = await getOrderBySessionId({ id: id })
       setLoading(false)
-      setOrder(order)
+      setOrder(order.order)
       setSuccess(true)
     }
     if (router.query.id) fetchOrder()
@@ -29,13 +32,13 @@ const SuccessPage = () => {
       <div className='success__product-information'>
         <div>
           <h2>Delivery details</h2>
-          <p>{order.order.name}</p>
-          <p>{order.order.addressLine1}</p>
-          <p>{order.order.addressLine2 && order.order.addressLine2 + '\n'}</p>
+          <p>{order.name}</p>
+          <p>{order.addressLine1}</p>
+          <p>{order.addressLine2 && order.addressLine2 + '\n'}</p>
           <p>
-            {order.order.city}, {order.order.postalCode}
+            {order.city}, {order.postalCode}
           </p>
-          <p>{order.order.email}</p>
+          <p>{order.email}</p>
         </div>
         <div>
           <table className='success__container'>
@@ -47,7 +50,7 @@ const SuccessPage = () => {
                 <th>Total Price</th>
               </tr>
             </thead>
-            {order.order.orderItems?.map((item, index) => {
+            {order.orderItems.map((item, index) => {
               return (
                 <tbody key={index}>
                   <tr className='success__content'>
@@ -65,7 +68,12 @@ const SuccessPage = () => {
                     <td>
                       <p>{item.quantity}</p>
                     </td>
-                    <td>{HopHelper.numberFormatter(item.total / 100)}</td>
+                    <td>
+                      {HopHelper.numberFormatter({
+                        currency: activeCurrency,
+                        value: item.total / 100,
+                      })}
+                    </td>
                   </tr>
                 </tbody>
               )
@@ -74,7 +82,11 @@ const SuccessPage = () => {
         </div>
         <div className='success__information'>
           <h2 className='success__total'>
-            Total Sum: {HopHelper.numberFormatter(order.order.total)}
+            Total Sum:{' '}
+            {HopHelper.numberFormatter({
+              currency: activeCurrency,
+              value: order.total,
+            })}
           </h2>
           <h3>
             Please contact us at{' '}
