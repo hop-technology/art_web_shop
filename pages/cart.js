@@ -7,6 +7,7 @@ import {
   removeFromCart,
 } from '../redux/reducers/cart.slice'
 import HopHelper from './api/helpers'
+import Button from '../components/Button'
 import { useSettingsContext } from '../context/settings'
 
 const CartPage = () => {
@@ -65,27 +66,21 @@ const CartPage = () => {
                     </td>
 
                     <td>
-                      <button
+                      <Button
                         className='cart__action-button'
                         onClick={() => dispatch(decrementQuantity(item.id))}
-                      >
-                        {' '}
-                        -{' '}
-                      </button>
-                      <button
+                        children='-'
+                      />
+                      <Button
                         className='cart__action-button'
                         onClick={() => dispatch(incrementQuantity(item.id))}
-                      >
-                        {' '}
-                        +{' '}
-                      </button>
-                      <button
+                        children='+'
+                      />
+                      <Button
                         className='cart__action-button'
                         onClick={() => dispatch(removeFromCart(item.id))}
-                      >
-                        {' '}
-                        x{' '}
-                      </button>
+                        children='x'
+                      />
                     </td>
                     <td>
                       <p>
@@ -108,12 +103,11 @@ const CartPage = () => {
                 value: HopHelper.totalPrice(cart),
               })}
             </h2>
-            <button
+            <Button
               className='cart__confirm-order'
               onClick={() => handlePay(cart)}
-            >
-              {loading ? 'Processing...' : 'Confirm and Pay'}
-            </button>
+              children={loading ? 'Processing...' : 'Confirm and Pay'}
+            />
           </div>
         </>
       )}
