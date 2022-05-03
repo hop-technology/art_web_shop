@@ -13,34 +13,12 @@ const SuccessPage = () => {
   const [success, setSuccess] = useState(false)
   const { activeCurrency } = useSettingsContext()
 
-  const handleEmail = async (data) => {
-    let products = data.orderItems.product?.map((item) => {
-      return {
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-      }
-    })
-
-    try {
-      await fetch('/api/email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data, products),
-      })
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
   useEffect(() => {
+    const { id } = router.query
     const fetchOrder = async () => {
-      const order = await getOrderBySessionId({ id: router.query.id })
+      const order = await getOrderBySessionId({ id: id })
       setLoading(false)
       setOrder(order.order)
-      handleEmail(order.order)
       setSuccess(true)
     }
     if (router.query.id) fetchOrder()
@@ -56,7 +34,7 @@ const SuccessPage = () => {
           <h2>Delivery details</h2>
           <p>{order.name}</p>
           <p>{order.addressLine1}</p>
-          <p>{order.addressLine2 && order.addressLine2 + '\n'}</p>
+          <p>{order.addressLine2 && order.order.addressLine2 + '\n'}</p>
           <p>
             {order.city}, {order.postalCode}
           </p>
@@ -72,7 +50,7 @@ const SuccessPage = () => {
                 <th>Total Price</th>
               </tr>
             </thead>
-            {order.orderItems?.map((item, index) => {
+            {order.orderItems.map((item, index) => {
               return (
                 <tbody key={index}>
                   <tr className='success__content'>
@@ -92,8 +70,8 @@ const SuccessPage = () => {
                     </td>
                     <td>
                       {HopHelper.numberFormatter({
-                        value: item.total / 100,
                         currency: activeCurrency,
+                        value: item.total / 100,
                       })}
                     </td>
                   </tr>
@@ -106,8 +84,8 @@ const SuccessPage = () => {
           <h2 className='success__total'>
             Total Sum:{' '}
             {HopHelper.numberFormatter({
-              value: order.total,
               currency: activeCurrency,
+              value: order.total,
             })}
           </h2>
           <h3>
