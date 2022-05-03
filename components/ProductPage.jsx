@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { addToCart } from '../redux/reducers/cart.slice'
 import { successMessage } from '../redux/reducers/message.slice'
 import PopUp from './PopUp'
-import HopHelper from '../pages/api/helpers'
 import { useSettingsContext } from '../context/settings'
-import Categories from './categories'
+import Categories from './Categories'
 import SingleProduct from './SingleProduct'
 
 const ProductPage = ({ product }) => {
