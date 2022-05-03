@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useSettingsContext } from '../context/settings'
 import getOrderBySessionId from '../lib/get-order-session-id'
 import HopHelper from './api/helpers'
-import Successtable from '../components/layout/SuccessTable'
+import SuccessTable from '../components/layout/SuccessTable'
 
 const SuccessPage = () => {
   const router = useRouter()
@@ -39,7 +39,7 @@ const SuccessPage = () => {
           </p>
           <p>{order.email}</p>
         </div>
-        <Successtable order={order} activeCurrency={activeCurrency} />
+        <SuccessTable order={order} activeCurrency={activeCurrency} />
         <div className='success__information'>
           <h2 className='success__total'>
             Total Sum:
