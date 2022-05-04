@@ -2,9 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { useSettingsContext } from '../context/settings'
-import { currencies, locales } from '../graphcms.config'
-import { Select } from './form/form'
+import { useSettingsContext } from '../../context/settings'
+import { currencies, locales } from '../../graphcms.config'
+import { Select } from '../form/form'
 
 const Footer = ({ categories = [] }) => {
   const router = useRouter()

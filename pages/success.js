@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
-
+import { useSettingsContext } from '../context/settings'
 import getOrderBySessionId from '../lib/get-order-session-id'
 import HopHelper from './api/helpers'
-import { useSettingsContext } from '../context/settings'
+import SuccessTable from '../components/layout/SuccessTable'
 
 const SuccessPage = () => {
   const router = useRouter()
@@ -40,59 +39,20 @@ const SuccessPage = () => {
           </p>
           <p>{order.email}</p>
         </div>
-        <div>
-          <table className='success__container'>
-            <thead className='success__header'>
-              <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total Price</th>
-              </tr>
-            </thead>
-            {order.orderItems.map((item, index) => {
-              return (
-                <tbody key={index}>
-                  <tr className='success__content'>
-                    <td>
-                      <Image
-                        src={item.product.images[0].url}
-                        height='100'
-                        width='100'
-                        alt={item.product.name}
-                      />
-                    </td>
-                    <td>
-                      <p>{item.product.name}</p>
-                    </td>
-                    <td>
-                      <p>{item.quantity}</p>
-                    </td>
-                    <td>
-                      {HopHelper.numberFormatter({
-                        currency: activeCurrency,
-                        value: item.total / 100,
-                      })}
-                    </td>
-                  </tr>
-                </tbody>
-              )
-            })}
-          </table>
-        </div>
+        <SuccessTable order={order} activeCurrency={activeCurrency} />
         <div className='success__information'>
           <h2 className='success__total'>
-            Total Sum:{' '}
+            Total Sum:
             {HopHelper.numberFormatter({
               currency: activeCurrency,
               value: order.total,
             })}
           </h2>
           <h3>
-            Please contact us at{' '}
+            Please contact us at
             <a href='artshop@walborgventures.com'>
               artshop@walborgventures.com
-            </a>{' '}
+            </a>
             or 08-123 56 78 for any questions.
           </h3>
         </div>

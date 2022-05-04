@@ -10,7 +10,7 @@ const PopUp = () => {
     if (message.open === true) {
       setTimeout(() => {
         dispatch(resetMessage())
-      }, 1500)
+      }, 800)
     }
   }, [message])
 
