@@ -1,57 +1,60 @@
 import Image from 'next/image'
 import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import {
-  incrementQuantity,
-  decrementQuantity,
-  removeFromCart,
-} from '../redux/reducers/cart.slice'
+import { useCart } from 'react-use-cart'
 import HopHelper from './api/helpers'
 import Button from '../components/ui/Button'
 import { useSettingsContext } from '../context/settings'
+import { useRouter } from 'next/router'
 
 const CartPage = () => {
+  const router = useRouter
+  const { cartTotal, isEmpty, items, removeItem, updateItemQuantity } =
+    useCart()
   const [loading, setLoading] = useState(false)
-  const cart = useSelector((state) => state.cart)
-  const dispatch = useDispatch()
   const { activeCurrency } = useSettingsContext()
+
+  const decrementItemQuantity = (item) =>
+    updateItemQuantity(item.id, item.quantity - 1)
+
+  const incrementItemQuantity = (item) =>
+    updateItemQuantity(item.id, item.quantity + 1)
 
   const handlePay = (data) => {
     setLoading(true)
-    HopHelper.createCheckOutSession(data)
+    HopHelper.createCheckOutSession(data, router, activeCurrency, cartTotal)
   }
 
   return (
     <div className='cart'>
-      {cart.length === 0 ? (
+      {isEmpty ? (
         <h1>Your Cart is Empty!</h1>
       ) : (
         <>
           <table className='cart__container'>
             <thead className='cart__header'>
               <tr>
-                <th>Image</th>
                 <th>Product</th>
+                <th>Size</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Actions</th>
                 <th>Total Price</th>
               </tr>
             </thead>
-            {cart.map((item, index) => {
+            {items.map((item, index) => {
               return (
                 <tbody key={index}>
                   <tr className='cart__content'>
                     <td>
                       <Image
-                        src={item.images[0].url}
+                        src={item.image.url}
                         height='100'
                         width='100'
                         alt={item.name}
                       />
                     </td>
                     <td>
-                      <p>{item.name}</p>
+                      <p>{item.size}</p>
                     </td>
                     <td>
                       <p>
@@ -68,19 +71,19 @@ const CartPage = () => {
                     <td>
                       <Button
                         className='cart__action-button'
-                        onClick={() => dispatch(decrementQuantity(item.id))}
+                        onClick={() => decrementItemQuantity(item)}
                       >
                         -
                       </Button>
                       <Button
                         className='cart__action-button'
-                        onClick={() => dispatch(incrementQuantity(item.id))}
+                        onClick={() => incrementItemQuantity(item)}
                       >
                         +
                       </Button>
                       <Button
                         className='cart__action-button'
-                        onClick={() => dispatch(removeFromCart(item.id))}
+                        onClick={() => removeItem(item.id)}
                       >
                         x
                       </Button>
@@ -103,12 +106,12 @@ const CartPage = () => {
               Grand Total:{' '}
               {HopHelper.numberFormatter({
                 currency: activeCurrency,
-                value: HopHelper.totalPrice(cart),
+                value: cartTotal,
               })}
             </h2>
             <Button
               className='cart__confirm-order'
-              onClick={() => handlePay(cart)}
+              onClick={() => handlePay(items)}
             >
               {loading ? 'Processing...' : 'Confirm and Pay'}
             </Button>

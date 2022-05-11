@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import MobNav from './MobNav'
 import HopHelper from '../../pages/api/helpers'
+import { useCart } from 'react-use-cart'
 
 const Navbar = () => {
-  const cart = useSelector((state) => state.cart)
+  const { items } = useCart()
   const [mobNav, setMobNav] = useState(false)
   const Toggle = () => setMobNav(!mobNav)
   const [scrollY, setScrollY] = useState(0)
@@ -52,7 +52,9 @@ const Navbar = () => {
             <a className={`navbar__links--a ${cartActive}`}>
               <p>
                 Cart
-                <span className='navbar__cart'>{HopHelper.totalAmount(cart)}</span>
+                <span className='navbar__cart'>
+                  {HopHelper.totalAmount(items)}
+                </span>
               </p>
             </a>
           </Link>
