@@ -3,15 +3,15 @@ import HopHelper from '../api/helpers'
 
 async function CreateStripeSession(req, res) {
   try {
-    const { items, success_url, cancel_url, locale } = req.body
+    const { items, success_url, cancel_url, locale, cartTotal } = req.body
 
     const stripeItem = items.map((element) => {
       return {
         price_data: {
           currency: 'sek',
           product_data: {
-            images: [element.images[0].url],
-            name: element.slug,
+            images: [element.image.url],
+            name: element.name,
             metadata: {
               productId: element.id,
             },
@@ -20,7 +20,7 @@ async function CreateStripeSession(req, res) {
         },
 
         quantity: element.quantity,
-        description: element.description,
+        description: element.size,
       }
     })
 
@@ -29,7 +29,7 @@ async function CreateStripeSession(req, res) {
       shipping_address_collection: {
         allowed_countries: ['SE', 'NO'],
       },
-      shipping_options: [HopHelper.handleShipping(items)],
+      shipping_options: [HopHelper.handleShipping(cartTotal)],
       line_items: stripeItem,
       mode: 'payment',
       locale,

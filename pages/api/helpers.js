@@ -1,4 +1,5 @@
 import { loadStripe } from '@stripe/stripe-js'
+import { useCart } from 'react-use-cart'
 import store from '../../redux/store/store'
 import {
   errorMessage,
@@ -8,19 +9,8 @@ const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 const stripePromise = loadStripe(publishableKey)
 
 const HopHelper = {
-  totalPrice(data) {
-    const total = data.reduce((acc, item) => {
-      return acc + item.price * item.quantity
-    }, 0)
-    if (total > 0) {
-      return total
-    } else {
-      return ''
-    }
-  },
-
   totalAmount(data) {
-    const amount = data.reduce((acc, item) => {
+    const amount = data?.reduce((acc, item) => {
       return acc + item.quantity
     }, 0)
     if (amount > 0) {
@@ -38,8 +28,8 @@ const HopHelper = {
     }
   },
 
-  handleShipping(cart) {
-    if (this.totalPrice(cart) > 10000) {
+  handleShipping(cartTotal) {
+    if (cartTotal > 10000) {
       return { shipping_rate: 'shr_1KrM4GL7WvJmM60Hh3sFFJlf' }
     } else {
       return { shipping_rate: 'shr_1KrLXXL7WvJmM60HqbcmyWp4' }
@@ -62,14 +52,17 @@ const HopHelper = {
     }
   },
 
-  async createCheckOutSession(cart) {
+  async createCheckOutSession(items, activeCurrency, router, cartTotal) {
     const stripe = await stripePromise
     try {
       const checkoutSession = await fetch('/api/create-stripe-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          items: cart,
+          items,
+          cartTotal,
+          currency: activeCurrency.code,
+          locale: router.locale,
           cancel_url: window.location.href,
           success_url: `${window.location.origin}/success`,
         }),

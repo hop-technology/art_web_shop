@@ -1,14 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { cartReducer } from "../reducers/cart.slice";
-import { messageReducer } from "../reducers/message.slice";
+import { configureStore } from '@reduxjs/toolkit'
+
+import { messageReducer } from '../reducers/message.slice'
 
 const reducer = {
-    cart: cartReducer,
-    message: messageReducer,
+  message: messageReducer,
 }
 
 const store = configureStore({
-    reducer,
+  reducer,
 })
 
 export default store
