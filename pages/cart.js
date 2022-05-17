@@ -27,95 +27,56 @@ const CartPage = () => {
   return (
     <div className='cart'>
       {isEmpty ? (
-        <h1>Your Cart is Empty!</h1>
+        <h1 className='cart__status'>Your Cart is Empty!</h1>
       ) : (
         <>
-          <table className='cart__container'>
-            <thead className='cart__header'>
-              <tr>
-                <th>Product</th>
-                <th>Size</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Actions</th>
-                <th>Total Price</th>
-              </tr>
-            </thead>
-            {items.map((item, index) => {
-              return (
-                <tbody key={index}>
-                  <tr className='cart__content'>
-                    <td>
-                      <Image
-                        src={item.image.url}
-                        height='100'
-                        width='100'
-                        alt={item.name}
-                      />
-                    </td>
-                    <td>
-                      <p>{item.size}</p>
-                    </td>
-                    <td>
-                      <p>
-                        {HopHelper.numberFormatter({
-                          currency: activeCurrency,
-                          value: item.price,
-                        })}
-                      </p>
-                    </td>
-                    <td>
-                      <p>{item.quantity}</p>
-                    </td>
-
-                    <td>
-                      <Button
-                        className='cart__action-button'
-                        onClick={() => decrementItemQuantity(item)}
-                      >
-                        -
-                      </Button>
-                      <Button
-                        className='cart__action-button'
-                        onClick={() => incrementItemQuantity(item)}
-                      >
-                        +
-                      </Button>
-                      <Button
-                        className='cart__action-button'
-                        onClick={() => removeItem(item.id)}
-                      >
-                        x
-                      </Button>
-                    </td>
-                    <td>
-                      <p>
-                        {HopHelper.numberFormatter({
-                          currency: activeCurrency,
-                          value: item.quantity * item.price,
-                        })}
-                      </p>
-                    </td>
-                  </tr>
-                </tbody>
-              )
-            })}
-          </table>
-          <div>
-            <h2>
-              Grand Total:{' '}
-              {HopHelper.numberFormatter({
-                currency: activeCurrency,
-                value: cartTotal,
-              })}
-            </h2>
-            <Button
-              className='cart__confirm-order'
-              onClick={() => handlePay(items)}
-            >
-              {loading ? 'Processing...' : 'Confirm and Pay'}
-            </Button>
-          </div>
+          <h1 className='cart__status'>Your Cart</h1>
+          <div className='cart__divider'></div>
+          {items.map((item, index) => {
+            return (
+              <div key={index} className='item'>
+                <div className='item__image'>
+                  <Image
+                    src={item.image.url}
+                    height='100'
+                    width='100'
+                    alt={item.name}
+                  />
+                </div>
+                <div className='item__info'>
+                  <p>{item.size}</p>
+                </div>
+                <div className='item__quantity'>
+                  <Button
+                    className='quantity-btn'
+                    onClick={() => decrementItemQuantity(item)}>
+                    <span className='minus'></span>
+                  </Button>
+                  <p className='item__quantity--number'>{item.quantity}</p>
+                  <Button
+                    className='quantity-btn'
+                    onClick={() => incrementItemQuantity(item)}>
+                    <span className='plus'></span>
+                  </Button>
+                </div>
+                <div className='item__price'>
+                  <p>
+                    {HopHelper.numberFormatter({
+                      currency: activeCurrency,
+                      value: item.quantity * item.price,
+                    })}
+                  </p>
+                </div>
+                <div className='item__remove'>
+                  <Button
+                    className='remove-item__btn'
+                    onClick={() => removeItem(item.id)}>
+                    <span className='cross'></span>
+                  </Button>
+                </div>
+              </div>
+            )
+          })}
         </>
       )}
     </div>
@@ -123,3 +84,101 @@ const CartPage = () => {
 }
 
 export default CartPage
+
+// return (
+//   <div className='cart'>
+//     {isEmpty ? (
+//       <h1>Your Cart is Empty!</h1>
+//     ) : (
+//       <>
+//         <table className='cart__container'>
+//           <thead className='cart__header'>
+//             <tr>
+//               <th>Product</th>
+//               <th>Size</th>
+//               <th>Price</th>
+//               <th>Quantity</th>
+//               <th>Actions</th>
+//               <th>Total Price</th>
+//             </tr>
+//           </thead>
+//           {items.map((item, index) => {
+//             return (
+//               <tbody key={index}>
+//                 <tr className='cart__content'>
+//                   <td>
+//                     <Image
+//                       src={item.image.url}
+//                       height='100'
+//                       width='100'
+//                       alt={item.name}
+//                     />
+//                   </td>
+//                   <td>
+//                     <p>{item.size}</p>
+//                   </td>
+//                   <td>
+//                     <p>
+//                       {HopHelper.numberFormatter({
+//                         currency: activeCurrency,
+//                         value: item.price,
+//                       })}
+//                     </p>
+//                   </td>
+//                   <td>
+//                     <p>{item.quantity}</p>
+//                   </td>
+
+//                   <td>
+//                     <Button
+//                       className='cart__action-button'
+//                       onClick={() => decrementItemQuantity(item)}
+//                     >
+//                       -
+//                     </Button>
+//                     <Button
+//                       className='cart__action-button'
+//                       onClick={() => incrementItemQuantity(item)}
+//                     >
+//                       +
+//                     </Button>
+//                     <Button
+//                       className='cart__action-button'
+//                       onClick={() => removeItem(item.id)}
+//                     >
+//                       x
+//                     </Button>
+//                   </td>
+//                   <td>
+//                     <p>
+//                       {HopHelper.numberFormatter({
+//                         currency: activeCurrency,
+//                         value: item.quantity * item.price,
+//                       })}
+//                     </p>
+//                   </td>
+//                 </tr>
+//               </tbody>
+//             )
+//           })}
+//         </table>
+//         <div>
+//           <h2>
+//             Grand Total:{' '}
+//             {HopHelper.numberFormatter({
+//               currency: activeCurrency,
+//               value: cartTotal,
+//             })}
+//           </h2>
+//           <Button
+//             className='cart__confirm-order'
+//             onClick={() => handlePay(items)}
+//           >
+//             {loading ? 'Processing...' : 'Confirm and Pay'}
+//           </Button>
+//         </div>
+//       </>
+//     )}
+//   </div>
+// )
+// }
