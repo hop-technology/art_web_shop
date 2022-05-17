@@ -497,13 +497,13 @@ body {
   margin: 0 2rem 5rem 2rem;
   background-color: white;
   border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 0px 0px #000000;
-  box-shadow: 0px 0px 0px 0px #000000;
+  -webkit-box-shadow: none;
+  box-shadow: none;
   transition: box-shadow 0.2s;
 }
 .product-card:hover {
-  -webkit-box-shadow: 0px 5px 9px -3px #000000;
-  box-shadow: 0px 5px 9px -3px #000000;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 5px 9px -3px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 0px 5px 9px -3px rgba(0, 0, 0, 0);
 }
 @media only screen and (max-width: 32.75em) {
   .product-card {
