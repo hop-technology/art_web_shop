@@ -137,4 +137,29 @@
       }
     }
   }
+
+  &__summary {
+    width: 100%;
+    display: grid;
+    justify-items: end;
+    
+    p {
+      font-size: 1.8rem;
+      margin: 3rem;
+    }
+
+    &--confirm {
+      background-color: rgb(30, 194, 30); 
+      border: none;
+      padding: 3rem 5rem;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 2.5rem;
+      margin-right: 3rem;
+
+      &:hover {
+        background-color: rgb(60, 185, 60);
+      }
+    }
+  }
 }

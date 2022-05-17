@@ -190,6 +190,27 @@ body {
   border-radius: 500rem;
   transform: rotate(90deg);
 }
+.cart__summary {
+  width: 100%;
+  display: grid;
+  justify-items: end;
+}
+.cart__summary p {
+  font-size: 1.8rem;
+  margin: 3rem;
+}
+.cart__summary--confirm {
+  background-color: #1ec21e;
+  border: none;
+  padding: 3rem 5rem;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 2.5rem;
+  margin-right: 3rem;
+}
+.cart__summary--confirm:hover {
+  background-color: #3cb93c;
+}
 
 .categories {
   display: flex;

@@ -77,6 +77,21 @@ const CartPage = () => {
               </div>
             )
           })}
+        <div className='cart__summary'>
+          <p>
+            Grand Total:{' '}
+            {HopHelper.numberFormatter({
+              currency: activeCurrency,
+              value: cartTotal,
+            })}
+          </p>
+          <Button
+            className='cart__summary--confirm'
+            onClick={() => handlePay(items)}
+          >
+            {loading ? 'Processing...' : 'Confirm and Pay'}
+          </Button>
+        </div>
         </>
       )}
     </div>
