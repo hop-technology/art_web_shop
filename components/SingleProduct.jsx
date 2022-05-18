@@ -63,6 +63,66 @@ const SingleProduct = ({ props, activeCurrency }) => {
 
   return (
     <div className='product-page'>
+      <div className='product-page__content'>
+        <h1 className='product-page__content--name'>{props.name}</h1>
+        <div className='product-page__content--desc'>
+          <p>{props.description}</p>
+        </div>
+        <div className='product-page__content--price'>
+          <p>
+            {HopHelper.numberFormatter({
+              currency: activeCurrency,
+              value: props.price,
+            })}
+          </p>
+        </div>
+        <div className='product-page__content--size'>
+          <select className='type' value={activeVariantId} onChange={changeVariant}>
+            {props.variants.map((variant) => (
+              <option key={variant.id} value={variant.id}>
+                {variant.name}
+              </option>
+            ))}
+          </select>
+          <select
+          className='quantity'
+            id='quantity'
+            name='quantity'
+            value={variantQuantity}
+            onChange={updateQuantity}>
+            {Array.from({ length: 5 }, (_, i) => {
+              const value = Number(i + 1)
+              return (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              )
+            })}
+          </select>
+        </div>
+
+        <Button
+          onClick={() => addToCart()}
+          className='product-page__content--btn'>
+          Add to cart
+        </Button>
+      </div>
+      <div className='product-page__image'>
+        <Image
+          src={props.images[0].url}
+          alt={props.name}
+          height={600}
+          width={600}
+        />
+      </div>
+    </div>
+  )
+}
+
+export default SingleProduct
+
+{
+  /* <div className='product-page'>
       <div className='product-page__container'>
         <h1>{props.name}</h1>
         <div className='product-page__text'>
@@ -79,7 +139,6 @@ const SingleProduct = ({ props, activeCurrency }) => {
               id='quantity'
               name='quantity'
               value={variantQuantity}
-              className='block appearance-none w-full bg-gainsboro border-2 border-gainsboro focus:border-slategray px-4 py-3 pr-8 focus:outline-none focus:bg-white text-slategray focus:text-slategray rounded-lg'
               onChange={updateQuantity}
             >
               {Array.from({ length: 5 }, (_, i) => {
@@ -114,8 +173,5 @@ const SingleProduct = ({ props, activeCurrency }) => {
           width={600}
         />
       </div>
-    </div>
-  )
+    </div> */
 }
-
-export default SingleProduct

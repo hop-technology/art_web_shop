@@ -536,59 +536,55 @@ body {
 }
 
 .product-page {
-  display: flex;
-  align-items: center;
-  height: 100vh;
-}
-.product-page__container {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10rem;
-  width: 50%;
-  margin-left: 5rem;
-  justify-content: center;
-  align-items: center;
-  height: 40rem;
-}
-.product-page__text {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  height: auto;
-  margin-top: 2rem;
-  align-content: flex-start;
-}
-.product-page__text p {
-  margin: 2rem 0;
+  display: grid;
+  grid-template-areas: " image desc ";
+  max-width: 1300px;
+  margin: 5rem 0;
+  column-gap: 6rem;
 }
 .product-page__image {
+  grid-area: image;
+  background-color: #fff;
+  padding: 3rem;
+  border-radius: 5px;
+}
+.product-page__content {
+  grid-area: desc;
   display: flex;
   flex-direction: column;
-  margin-top: 10rem;
-  width: 50%;
-  margin-right: 5rem;
-  align-items: center;
 }
-.product-page__btn {
-  width: max-content;
-  padding: 1.2rem 3.2rem;
-  background-color: rgba(15, 15, 15, 0.349);
-  border: 1px solid #ffffff;
-  color: #ffffff;
-  font-size: 1.5rem;
-  font-weight: 300;
-  font-family: "Open Sans", sans-serif;
-  cursor: pointer;
-  margin-top: 2rem;
+.product-page__content--name {
+  margin-bottom: 2rem;
 }
-@media only screen and (max-width: 56.25em) {
-  .product-page__btn {
-    margin-bottom: 5rem;
-  }
+.product-page__content--desc {
+  margin-bottom: 2rem;
 }
-.product-page__btn:hover {
-  background-color: transparent;
-  transition: all 0.2s;
+.product-page__content--price {
+  color: #f13131;
+  margin-bottom: 5rem;
+  font-size: 2rem;
+}
+.product-page__content--size {
+  margin-bottom: 2rem;
+}
+.product-page__content--size .type {
+  border: none;
+  padding: 2rem 3rem;
+  border-radius: 5px 0 0 5px;
+}
+.product-page__content--size .quantity {
+  border: none;
+  padding: 2rem 3rem;
+  border-radius: 0 5px 5px 0;
+}
+.product-page__content--btn {
+  width: fit-content;
+  padding: 2rem 3rem;
+  font-size: 2rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
 }
 
 .success {
