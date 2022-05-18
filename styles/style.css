@@ -426,7 +426,7 @@ body {
 .navbar__links--left {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 50%;
   justify-content: space-evenly;
   height: 100%;
 }
@@ -460,46 +460,48 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: calc(100% - 0.7rem);
 }
 .navbar__links--right .selection {
   display: flex;
-  align-items: center;
-  text-align: center;
 }
 .navbar__links--right .selection:hover {
   background-color: #006168;
   color: #002f33;
 }
+.navbar__links--right .selection p {
+  margin-bottom: 1rem;
+}
 .navbar__links--right .selection__cart {
   display: flex;
-  height: 100%;
-}
-.navbar__links--right .selection__image {
-  position: absolute;
+  width: 10rem;
 }
 .navbar__links--right .selection__amount {
+  display: flex;
+  position: relative;
+  margin-left: -3.5rem;
+  margin-top: -2.8rem;
   z-index: 1;
-  margin-bottom: 2.5rem;
-  margin-left: 2.8rem;
   background-color: red;
   border-radius: 50%;
   border: 1px solid red;
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+.navbar__links--right .selection__amount p {
+  margin: 1rem;
 }
 .navbar__links--right a {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-decoration: none;
   font-size: 1.8rem;
   font-weight: 300;
   color: #ffffff;
   width: 100%;
-  height: calc(100% - 0.7rem);
   padding: 0 1rem;
   padding-bottom: 0rem;
   white-space: nowrap;

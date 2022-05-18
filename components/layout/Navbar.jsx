@@ -74,9 +74,9 @@ const Navbar = () => {
                   {isEmpty ? (
                     ''
                   ) : (
-                    <span className='selection__amount'>
+                    <div className='selection__amount'>
                       <p>{HopHelper.totalAmount(items)}</p>
-                    </span>
+                    </div>
                   )}
                 </a>
               </Link>
