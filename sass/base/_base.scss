@@ -41,16 +41,21 @@ html {
     font-size: 50%; // 1 rem = 8px, 8/16 =50%
   }
 
-  @include respond(phone) {
+  @include respond(phone-XL) {
     // width < 600?
-    font-size: 30%; // 1 rem = 4.8px, 4.8/16 =30%
+    font-size: 40%; 
   }
 }
 
 body {
   box-sizing: border-box;
   overflow-x: hidden;
-  background-color: $color-bg;
+  background-color: rgb(198, 239, 225);
+}
+
+.content-container {
+  display: flex;
+  justify-content: center;
 }
 
 // .wrapper {
