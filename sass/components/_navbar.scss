@@ -6,15 +6,9 @@
   display: flex;
   justify-content: space-between;
   padding: 0 6%;
-  height: 6.5rem;
+  height: 7rem;
   background-color: $color-primary;
-  //position: fixed;
   width: 100%;
-  z-index: 500;
-
-  &__cart {
-    font-size: 1.1rem;
-  }
 
   &__burger {
     display: none;
@@ -36,19 +30,13 @@
   }
   &__image {
     & a {
-      display: flex;
-      justify-content: center;
-      width: 200px;
-      height: 100%;
       cursor: pointer;
     }
   }
   &__links {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 35%;
-
+    width: 100%;
     .active {
       border-bottom: 2px solid #fff;
     }
@@ -56,33 +44,99 @@
       display: none;
     }
 
-    &--link {
+    &--left {
       display: flex;
-      align-items: center;
-      width: auto;
+      flex-direction: row;
+      width: 50%;
+      justify-content: space-evenly;
       height: 100%;
-      text-align: center;
-      &:hover {
-        background-color: $color-primary-light;
-        color: $color-primary-dark;
+      .selection {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        &:hover {
+          background-color: $color-primary-light;
+          color: $color-primary-dark;
+        }
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 1.8rem;
+        font-weight: 300;
+        color: $color-text-light;
+        width: 100%;
+        height: calc(100% - 0.7rem);
+        padding: 0 1rem;
+        white-space: nowrap;
+
+        &:active {
+          border-bottom: 2px solid #fff;
+        }
       }
     }
-    &--a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 1.8rem;
-      font-weight: 300;
-      color: $color-text-light;
-      width: 100%;
-      height: calc(100% - 0.7rem);
-      padding: 0 1rem;
-      padding-bottom: 0rem;
-      white-space: nowrap;
 
-      &:active {
-        border-bottom: 2px solid #fff;
+    &--right {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      width: 90%;
+      height: calc(100% - 0.7rem);
+      
+      .selection {
+        display: flex;
+        
+        &:hover {
+          background-color: $color-primary-light;
+          color: $color-primary-dark;
+        }
+
+        p {
+          margin-bottom: 1rem;
+        }
+
+        &__cart {
+          display: flex;
+          width: 10rem;
+        }
+
+        &__amount {
+          display: flex;
+          position: relative;
+          margin-left: -3.5rem;
+          margin-top: -2.8rem;
+          z-index: 1;
+          background-color: red;
+          border-radius: 50%;
+          border: 1px solid red;
+          width: 3rem;
+          height: 3rem;
+          justify-content: center;
+          align-items: center;
+
+          p {
+            margin: 1rem;
+          }
+        }
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        font-size: 1.8rem;
+        font-weight: 300;
+        color: $color-text-light;
+        width: 100%;
+        padding: 0 1rem;
+        white-space: nowrap;
+
+        &:active {
+          border-bottom: 2px solid #fff;
+        }
       }
     }
   }
