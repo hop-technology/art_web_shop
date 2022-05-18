@@ -246,10 +246,6 @@ body {
   margin-top: 5rem;
 }
 
-.contact {
-  height: 100vh;
-  width: 100vw;
-}
 .contact__container {
   display: flex;
   width: 100%;
@@ -258,7 +254,10 @@ body {
   align-items: center;
 }
 .contact__container h1 {
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
+}
+.contact__information {
+  width: 50%;
 }
 
 .footer {
