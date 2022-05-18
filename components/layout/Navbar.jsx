@@ -7,7 +7,7 @@ import HopHelper from '../../pages/api/helpers'
 import { useCart } from 'react-use-cart'
 
 const Navbar = () => {
-  const { items } = useCart()
+  const { items, isEmpty } = useCart()
   const [mobNav, setMobNav] = useState(false)
   const Toggle = () => setMobNav(!mobNav)
   const [scrollY, setScrollY] = useState(0)
@@ -63,7 +63,7 @@ const Navbar = () => {
             <Image src='/shopping-cart.svg' height={30} width={30} />
             <div className='navbar__cart'>
               <span className='amount'>
-                <p>{HopHelper.totalAmount(items)}</p>
+                {isEmpty ? '' : <p>{HopHelper.totalAmount(items)}</p>}
               </span>
             </div>
           </a>
