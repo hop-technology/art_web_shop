@@ -50,7 +50,12 @@ html {
 body {
   box-sizing: border-box;
   overflow-x: hidden;
- background-color: rgb(198, 239, 225);
+  background-color: rgb(198, 239, 225);
+}
+
+.content-container {
+  display: flex;
+  justify-content: center;
 }
 
 // .wrapper {

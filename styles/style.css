@@ -56,6 +56,11 @@ body {
   background-color: #c6efe1;
 }
 
+.content-container {
+  display: flex;
+  justify-content: center;
+}
+
 body {
   font-display: swap;
   font-family: "Open Sans", sans-serif;
@@ -277,14 +282,9 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
-  margin: 15rem auto;
-  width: 1300px;
-}
-@media only screen and (max-width: 32.75em) {
-  .homepage {
-    flex-direction: column;
-    align-items: center;
-  }
+  justify-content: center;
+  margin: 15rem 0;
+  max-width: 1300px;
 }
 
 .mob-nav-bg {
@@ -504,12 +504,6 @@ body {
 .product-card:hover {
   -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 5px 9px -3px rgba(0, 0, 0, 0);
   box-shadow: 0px 10px 13px -7px #000000, 0px 5px 9px -3px rgba(0, 0, 0, 0);
-}
-@media only screen and (max-width: 32.75em) {
-  .product-card {
-    width: 100%;
-    margin-bottom: 10rem;
-  }
 }
 .product-card__image {
   padding: 3rem;
