@@ -44,30 +44,45 @@ const Navbar = () => {
       <MobNav show={mobNav} close={Toggle} />
 
       <div className='navbar__links'>
-        <div className='navbar__links--link'>
-          <Link href='/' passHref>
-            <a className={`navbar__links--a ${homeActive}`}>Hem</a>
-          </Link>
-        </div>
-        <div className='navbar__links--link'>
-          <Link href='/contact'>
-            <a className={`navbar__links--a ${contactActive}`}>
-              <p>Kontakt</p>
-            </a>
-          </Link>
+        <div className='navbar__links--left'>
+          <div className='selection'>
+            <Link href='/' passHref>
+              <a className={`navbar__links--a ${homeActive}`}>Hem</a>
+            </Link>
+          </div>
+          <div className='selection'>
+            <Link href='/contact'>
+              <a className={`navbar__links--a ${contactActive}`}>
+                <p>Kontakt</p>
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
-      <div className='navbar__links--link'>
-        <Link href='/cart'>
-          <a className={`navbar__links--a ${cartActive}`}>
-            <Image src='/shopping-cart.svg' height={30} width={30} />
-            <div className='navbar__cart'>
-              <span className='amount'>
-                {isEmpty ? '' : <p>{HopHelper.totalAmount(items)}</p>}
-              </span>
+      <div className='navbar__links'>
+        <div className='navbar__links--right'>
+          <div className='selection'>
+            <div className='selection__cart'>
+              <Link href='/cart'>
+                <a className={`navbar__links--a ${cartActive}`}>
+                  <img
+                    src='/shopping-cart.svg'
+                    height={30}
+                    width={100}
+                    className='selection__image'
+                  />
+                  {isEmpty ? (
+                    ''
+                  ) : (
+                    <span className='selection__amount'>
+                      <p>{HopHelper.totalAmount(items)}</p>
+                    </span>
+                  )}
+                </a>
+              </Link>
             </div>
-          </a>
-        </Link>
+          </div>
+        </div>
       </div>
     </div>
   )

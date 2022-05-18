@@ -1,10 +1,14 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { useCart } from 'react-use-cart'
+import { useRouter } from 'next/router'
 import HopHelper from './api/helpers'
 import Button from '../components/ui/Button'
 import { useSettingsContext } from '../context/settings'
-import { useRouter } from 'next/router'
+import getPageData from '../lib/get-page-data'
+import getAllProducts from '../lib/get-all-product'
+
+
 
 const CartPage = () => {
   const router = useRouter
@@ -49,13 +53,15 @@ const CartPage = () => {
                 <div className='item__quantity'>
                   <Button
                     className='quantity-btn'
-                    onClick={() => decrementItemQuantity(item)}>
+                    onClick={() => decrementItemQuantity(item)}
+                  >
                     <span className='minus'></span>
                   </Button>
                   <p className='item__quantity--number'>{item.quantity}</p>
                   <Button
                     className='quantity-btn'
-                    onClick={() => incrementItemQuantity(item)}>
+                    onClick={() => incrementItemQuantity(item)}
+                  >
                     <span className='plus'></span>
                   </Button>
                 </div>
@@ -70,28 +76,29 @@ const CartPage = () => {
                 <div className='item__remove'>
                   <Button
                     className='remove-item__btn'
-                    onClick={() => removeItem(item.id)}>
+                    onClick={() => removeItem(item.id)}
+                  >
                     <span className='cross'></span>
                   </Button>
                 </div>
               </div>
             )
           })}
-        <div className='cart__summary'>
-          <p>
-            Grand Total:{' '}
-            {HopHelper.numberFormatter({
-              currency: activeCurrency,
-              value: cartTotal,
-            })}
-          </p>
-          <Button
-            className='cart__summary--confirm'
-            onClick={() => handlePay(items)}
-          >
-            {loading ? 'Processing...' : 'Confirm and Pay'}
-          </Button>
-        </div>
+          <div className='cart__summary'>
+            <p>
+              Grand Total:{' '}
+              {HopHelper.numberFormatter({
+                currency: activeCurrency,
+                value: cartTotal,
+              })}
+            </p>
+            <Button
+              className='cart__summary--confirm'
+              onClick={() => handlePay(items)}
+            >
+              {loading ? 'Processing...' : 'Confirm and Pay'}
+            </Button>
+          </div>
         </>
       )}
     </div>
@@ -99,3 +106,15 @@ const CartPage = () => {
 }
 
 export default CartPage
+
+export async function getStaticProps({ locale }) {
+  const pageData = await getPageData({ locale })
+  const { products } = await getAllProducts({ locale })
+
+  return {
+    props: {
+      ...pageData,
+      products,
+    },
+  }
+}

@@ -1,3 +1,6 @@
+import getPageData from '../lib/get-page-data'
+import getAllProducts from '../lib/get-all-product'
+
 const Contact = () => {
   return (
     <div className='contact'>
@@ -10,3 +13,15 @@ const Contact = () => {
 }
 
 export default Contact
+
+export async function getStaticProps({ locale }) {
+  const pageData = await getPageData({ locale })
+  const { products } = await getAllProducts({ locale })
+
+  return {
+    props: {
+      ...pageData,
+      products,
+    },
+  }
+}
