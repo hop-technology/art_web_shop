@@ -286,7 +286,7 @@ body {
 .homepage {
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: flex-start;
   justify-content: center;
   margin: 15rem 0;
   max-width: 1300px;
