@@ -450,7 +450,6 @@ body {
   width: 100%;
   height: calc(100% - 0.7rem);
   padding: 0 1rem;
-  padding-bottom: 0rem;
   white-space: nowrap;
 }
 .navbar__links--left a:active {
@@ -503,7 +502,6 @@ body {
   color: #ffffff;
   width: 100%;
   padding: 0 1rem;
-  padding-bottom: 0rem;
   white-space: nowrap;
 }
 .navbar__links--right a:active {
