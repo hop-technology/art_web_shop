@@ -49,6 +49,11 @@ html {
     font-size: 50%;
   }
 }
+@media only screen and (max-width: 37.5em) {
+  html {
+    font-size: 40%;
+  }
+}
 
 body {
   box-sizing: border-box;
@@ -508,6 +513,16 @@ body {
 .product-card:active {
   -webkit-box-shadow: 0px 2px 13px -7px #000000, 0px 5px 9px -3px rgba(0, 0, 0, 0);
   box-shadow: 0px 2px 13px -7px #000000, 0px 5px 9px -3px rgba(0, 0, 0, 0);
+}
+@media only screen and (max-width: 37.5em) {
+  .product-card {
+    width: 40%;
+  }
+}
+@media only screen and (max-width: 23.438em) {
+  .product-card {
+    width: 80%;
+  }
 }
 .product-card__image {
   padding: 3rem;
