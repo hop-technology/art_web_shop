@@ -6,13 +6,18 @@ const ProductCard = ({ products }) => {
     return (
       <Link href={`/products/${product.slug}`} key={slug} passHref>
         <div className='product-card'>
-          <h2>{product.name}</h2>
-          <Image
-            src={product.images[0].url}
-            width={200}
-            height={200}
-            alt={product.name}
-          />
+          <div className='product-card__image'>
+            <Image
+              src={product.images[0].url}
+              width={300}
+              height={300}
+              alt={product.name}
+            />
+          </div>
+          <div className='product-card__info'>
+            <p className='product-card__info--name'>{product.name}</p>
+            <p className='product-card__info--price'>{product.price} kr</p>
+          </div>
         </div>
       </Link>
     )
