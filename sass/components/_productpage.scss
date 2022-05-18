@@ -31,15 +31,8 @@
     }
 
     &--size {
-      margin-bottom: 2rem;
+      margin-bottom: 10rem;
 
-      .type {
-        border: none;
-        padding: 2rem 3rem;
-        border-radius: 5px 0 0 5px;
-   
-        
-      }
       .quantity {
         border: none;
         padding: 2rem 3rem;
@@ -55,8 +48,35 @@
       color: #fff;
       border: none;
       border-radius: 5px;
+      align-self: flex-end;
     }
   }
+}
+// ***************** Dropdown menu *****************
+.trigger {
+  font-size: 1.5rem;
+  border: none;
+  width: 20rem;
+  padding: 2rem 3rem;
+  border-radius: 5px 0 0 5px;
+  background-color: #fff;
+  
+}
+
+.content {
+  width: 20rem;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 20px 0 rgba(0 0 0 / 0.1);
+}
+
+.item {
+  padding: 5px 10px;
+  font-size: 1.3rem;
+}
+
+.arrow {
+  fill: #fff;
 }
 
 // .product-page {

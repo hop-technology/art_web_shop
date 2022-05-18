@@ -6,6 +6,7 @@ import Button from './ui/Button'
 import HopHelper from '../pages/api/helpers'
 import { useDispatch } from 'react-redux'
 import { errorMessage, successMessage } from '../redux/reducers/message.slice'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 const SingleProduct = ({ props, activeCurrency }) => {
   const { addItem } = useCart()
@@ -14,6 +15,9 @@ const SingleProduct = ({ props, activeCurrency }) => {
   const [variantQuantity, setVariantQuantity] = useState(1)
   const [activeVariantId, setActiveVariantId] = useState(
     router.query.variantId || props.variants[0].id
+  )
+  const [activeVariantName, setActiveVariantName] = useState(
+    '-- Select a color --'
   )
 
   useEffect(() => {
@@ -77,15 +81,27 @@ const SingleProduct = ({ props, activeCurrency }) => {
           </p>
         </div>
         <div className='product-page__content--size'>
-          <select className='type' value={activeVariantId} onChange={changeVariant}>
-            {props.variants.map((variant) => (
-              <option key={variant.id} value={variant.id}>
-                {variant.name}
-              </option>
-            ))}
-          </select>
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger className='trigger'>
+              {activeVariantName}
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content loop className='content'>
+              {props.variants.map((variant) => (
+                <DropdownMenu.Item
+                  className='item'
+                  key={variant.id}
+                  onClick={() => [
+                    setActiveVariantId(variant.id),
+                    setActiveVariantName(variant.name),
+                  ]}>
+                  {variant.name}
+                </DropdownMenu.Item>
+              ))}
+              <DropdownMenu.Arrow offset={5} className="arrow" />
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
           <select
-          className='quantity'
+            className='quantity'
             id='quantity'
             name='quantity'
             value={variantQuantity}
