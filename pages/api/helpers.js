@@ -14,7 +14,7 @@ const HopHelper = {
       return acc + item.quantity
     }, 0)
     if (amount > 0) {
-      return ` (${amount})`
+      return `${amount}`
     } else {
       return ''
     }
