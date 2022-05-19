@@ -65,11 +65,12 @@ const Navbar = () => {
             <div className='selection__cart'>
               <Link href='/cart'>
                 <a className={`navbar__links--a ${cartActive}`}>
-                  <img
+                  <Image
                     src='/shopping-cart.svg'
                     height={30}
                     width={100}
                     className='selection__image'
+                    alt='cart icon'
                   />
                   {isEmpty ? (
                     ''
