@@ -5,17 +5,31 @@
   margin: 5rem 0;
   column-gap: 6rem;
 
+  @include respond(tab-port) {
+    grid-template-areas:
+      ' image image '
+      ' desc desc ';
+  }
+
   &__image {
     grid-area: image;
     background-color: #fff;
     padding: 3rem;
     border-radius: 5px;
+    margin: auto;
   }
-
+  
   &__content {
     grid-area: desc;
     display: flex;
     flex-direction: column;
+    margin-top: 5rem;
+    margin-right: 3rem;
+
+    @include respond(tab-port) {
+     max-width: 500px;
+     margin: 3rem 2rem;
+    }
 
     &--name {
       margin-bottom: 2rem;
@@ -52,7 +66,7 @@
           cursor: default;
           color: transparent;
           text-shadow: 0px 0px black;
-          width:2rem;
+          width: 2rem;
         }
 
         input[type='number']::-webkit-inner-spin-button,
@@ -90,6 +104,10 @@
       border: none;
       border-radius: 5px;
       align-self: flex-end;
+
+      @include respond(tab-port) {
+        align-self: flex-start;
+       }
     }
   }
 }

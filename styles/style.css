@@ -542,16 +542,30 @@ body {
   margin: 5rem 0;
   column-gap: 6rem;
 }
+@media only screen and (max-width: 56.25em) {
+  .product-page {
+    grid-template-areas: " image image " " desc desc ";
+  }
+}
 .product-page__image {
   grid-area: image;
   background-color: #fff;
   padding: 3rem;
   border-radius: 5px;
+  margin: auto;
 }
 .product-page__content {
   grid-area: desc;
   display: flex;
   flex-direction: column;
+  margin-top: 5rem;
+  margin-right: 3rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .product-page__content {
+    max-width: 500px;
+    margin: 3rem 2rem;
+  }
 }
 .product-page__content--name {
   margin-bottom: 2rem;
@@ -616,6 +630,11 @@ body {
   border: none;
   border-radius: 5px;
   align-self: flex-end;
+}
+@media only screen and (max-width: 56.25em) {
+  .product-page__content--btn {
+    align-self: flex-start;
+  }
 }
 
 .trigger {
