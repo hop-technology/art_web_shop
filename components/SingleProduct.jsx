@@ -125,6 +125,7 @@ const inputRef = useRef(1)
               name='quantity'
               min='1'
               max='50'
+              readOnly
               onChange={updateQuantity}
               value={variantQuantity}></input>
             <button onClick={increment} className='quantity-plus'>
