@@ -8,7 +8,12 @@
   padding: 0 6%;
   height: 7rem;
   background-color: $color-primary;
-  width: 100%;
+  width: 101%;
+  z-index: 500;
+
+  &__cart {
+    font-size: 1.1rem;
+  }
 
   &__burger {
     display: none;
