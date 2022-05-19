@@ -46,10 +46,7 @@
 
     &--options {
       display: flex;
-      margin-bottom: 10rem;
-
-      .size {
-      }
+      margin-bottom: 5rem;
 
       .quantity {
         display: flex;
@@ -67,6 +64,7 @@
           color: transparent;
           text-shadow: 0px 0px black;
           width: 2rem;
+          text-align: center;
         }
 
         input[type='number']::-webkit-inner-spin-button,
@@ -104,6 +102,7 @@
       border: none;
       border-radius: 5px;
       align-self: flex-end;
+      margin-bottom: 5rem;
 
       @include respond(tab-port) {
         align-self: flex-start;
@@ -111,6 +110,7 @@
     }
   }
 }
+
 // ***************** Dropdown menu *****************
 .trigger {
   font-size: 1.5rem;
@@ -119,6 +119,19 @@
   padding: 2rem 3rem;
   border-radius: 5px 0 0 5px;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover {
+    background-color: #f4f4f4;
+  }
+
+  .caret-down {
+    margin-bottom: -1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
 
 .content {
@@ -140,63 +153,3 @@
 .arrow {
   fill: #fff;
 }
-
-// .product-page {
-//   display: flex;
-//   align-items: center;
-//   height: 100vh;
-
-//   &__container {
-//     display: flex;
-//     flex-direction: column;
-//     margin-top: 10rem;
-//     width: 50%;
-//     margin-left: 5rem;
-//     justify-content: center;
-//     align-items: center;
-//     height: 40rem;
-//   }
-
-//   &__text {
-//     display: flex;
-//     flex-direction: column;
-//     width: 70%;
-//     height: auto;
-//     margin-top: 2rem;
-//     align-content: flex-start;
-
-//     p {
-//       margin: 2rem 0;
-//     }
-//   }
-
-//   &__image {
-//     display: flex;
-//     flex-direction: column;
-//     margin-top: 10rem;
-//     width: 50%;
-//     margin-right: 5rem;
-//     align-items: center;
-//   }
-
-//   &__btn {
-//     width: max-content;
-//     padding: 1.2rem 3.2rem;
-//     background-color: rgba(15, 15, 15, 0.349);
-//     border: 1px solid $color-text-light;
-//     color: $color-text-light;
-//     font-size: 1.5rem;
-//     font-weight: 300;
-//     font-family: 'Open Sans', sans-serif;
-//     cursor: pointer;
-//     margin-top: 2rem;
-//     @include respond(tab-port) {
-//       margin-bottom: 5rem;
-//     }
-
-//     &:hover {
-//       background-color: transparent;
-//       transition: all 0.2s;
-//     }
-//   }
-// }
