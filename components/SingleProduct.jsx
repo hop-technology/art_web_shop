@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useCart } from 'react-use-cart'
 import Image from 'next/image'
@@ -16,9 +16,7 @@ const SingleProduct = ({ props, activeCurrency }) => {
   const [activeVariantId, setActiveVariantId] = useState(
     router.query.variantId || props.variants[0].id
   )
-  const [activeVariantName, setActiveVariantName] = useState(
-    '-- Select a color --'
-  )
+const inputRef = useRef(1)
 
   useEffect(() => {
     const url = `/products/${props.slug}?variant=${activeVariantId}`
@@ -65,6 +63,20 @@ const SingleProduct = ({ props, activeCurrency }) => {
     }
   }
 
+  const decrement = () => {
+    if (inputRef.current > 1) {
+      inputRef.current --
+      setVariantQuantity(inputRef.current)
+    }
+  }
+  
+  const increment = () => {
+    if (inputRef.current <= 49) {
+      inputRef.current ++
+      setVariantQuantity(inputRef.current)
+    }
+  }
+
   return (
     <div className='product-page'>
       <div className='product-page__content'>
@@ -80,41 +92,45 @@ const SingleProduct = ({ props, activeCurrency }) => {
             })}
           </p>
         </div>
-        <div className='product-page__content--size'>
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger className='trigger'>
-              {activeVariantName}
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content loop className='content'>
-              {props.variants.map((variant) => (
-                <DropdownMenu.Item
-                  className='item'
-                  key={variant.id}
-                  onClick={() => [
-                    setActiveVariantId(variant.id),
-                    setActiveVariantName(variant.name),
-                  ]}>
-                  {variant.name}
-                </DropdownMenu.Item>
-              ))}
-              <DropdownMenu.Arrow offset={5} className="arrow" />
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
-          <select
-            className='quantity'
-            id='quantity'
-            name='quantity'
-            value={variantQuantity}
-            onChange={updateQuantity}>
-            {Array.from({ length: 5 }, (_, i) => {
-              const value = Number(i + 1)
-              return (
-                <option key={value} value={value}>
-                  {value}
-                </option>
-              )
-            })}
-          </select>
+        <div className='product-page__content--options'>
+          <div className='size'>
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger className='trigger'>
+                {activeVariant.name}
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content loop className='content'>
+                {props.variants.map((variant) => (
+                  <DropdownMenu.Item
+                    className='item'
+                    key={variant.id}
+                    onClick={() => setActiveVariantId(variant.id)}>
+                    {variant.name}
+                  </DropdownMenu.Item>
+                ))}
+                <DropdownMenu.Arrow offset={5} className='arrow' />
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
+          </div>
+          <div className='quantity'>
+            <label htmlFor='quantity'>
+              Pcs:
+            </label>
+            <button onClick={decrement} className='quantity-minus'>
+              -
+            </button>
+            <input
+              className='quantity__input'
+              type='number'
+              id='quantity'
+              name='quantity'
+              min='1'
+              max='50'
+              onChange={updateQuantity}
+              value={variantQuantity}></input>
+            <button onClick={increment} className='quantity-plus'>
+              +
+            </button>
+          </div>
         </div>
 
         <Button
