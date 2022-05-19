@@ -38,37 +38,40 @@ const Footer = ({ categories = [] }) => {
             priority
           />
         </div>
-        <div className='content__categories'>
-          {categories.map((category) => (
-            <li key={category.id}>
-              <Link href={`/${category.type.toLowerCase()}/${category.slug}`}>
-                <a>{category.name}</a>
-              </Link>
-            </li>
-          ))}
-        </div>
-        <div className='content__selection'>
-          <form>
-            <Select
-              className=''
-              defaultValue={activeLocale.value}
-              field='language'
-              label='Language'
-              onChange={updateLocale}
-              options={locales}
-            />
-            <Select
-              className=''
-              defaultValue={activeCurrency.code}
-              field='currency'
-              label='Currency'
-              onChange={updateCurrency}
-              options={currencies.map((currency) => ({
-                label: currency.code,
-                value: currency.code,
-              }))}
-            />
-          </form>
+        <div className='content__container'>
+          <div className='content__categories'>
+            <h4>Categories</h4>
+            {categories.map((category) => (
+              <ol key={category.id}>
+                <Link href={`/${category.type.toLowerCase()}/${category.slug}`}>
+                  <a>{category.name}</a>
+                </Link>
+              </ol>
+            ))}
+          </div>
+          <div className='content__selection'>
+            <form>
+              <Select
+                className=''
+                defaultValue={activeLocale.value}
+                field='language'
+                label='Language'
+                onChange={updateLocale}
+                options={locales}
+              />
+              <Select
+                className=''
+                defaultValue={activeCurrency.code}
+                field='currency'
+                label='Currency'
+                onChange={updateCurrency}
+                options={currencies.map((currency) => ({
+                  label: currency.code,
+                  value: currency.code,
+                }))}
+              />
+            </form>
+          </div>
         </div>
       </div>
     </footer>

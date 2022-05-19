@@ -35,6 +35,13 @@ const MobNav = ({ show, close }) => {
                 </Link>
               </div>
               <div className='mob-nav__links--link'>
+                <Link href='/contact' passHref>
+                  <a className='mob-nav__links--a' onClick={() => close()}>
+                    Contact
+                  </a>
+                </Link>
+              </div>
+              <div className='mob-nav__links--link'>
                 <Link href='/cart' passHref>
                   <a className='mob-nav__links--a' onClick={() => close()}>
                     Cart
