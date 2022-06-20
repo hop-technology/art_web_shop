@@ -6,7 +6,6 @@ async function CreateStripeSession(req, res) {
     const { items, success_url, cancel_url, locale, cartTotal } = req.body
 
     const stripeItem = items.map((element) => {
-      debugger
       return {
         price_data: {
           currency: 'sek',
