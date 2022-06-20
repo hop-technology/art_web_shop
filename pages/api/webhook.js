@@ -1,5 +1,4 @@
 import createOrder from '../../lib/create-order'
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 import stripeSigningSecret from '../../lib/stripe-signing-secret'
 
 export const config = {
@@ -16,11 +15,9 @@ const handler = async (req, res, event) => {
       try {
         switch (event.type) {
           case 'checkout.session.completed':
-            let sessionId = event.data.object.id
-            const data = await stripe.checkout.sessions.retrieve(sessionId, {
-              expand: ['line_items.data.price.product', 'customer'],
+            await createOrder({
+              sessionId: event.data.object.id,
             })
-            await createOrder(data)
             break
           default:
             throw new Error(`Unhandled event: ${event.type}`)
@@ -29,10 +26,9 @@ const handler = async (req, res, event) => {
         res.status(500).json({ message: 'Unknown event' })
       }
     }
-
-    res.status(200).json({ message: 'Received' })
+    return res.status(200).send({ message: 'Received' })
   } else {
-    res.status(405).json({ message: 'Method not allowed' })
+    return res.status(405).send({ message: 'Method not allowed' })
   }
 }
 
