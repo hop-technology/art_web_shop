@@ -21,7 +21,7 @@ const SuccessPage = () => {
       setSuccess(true)
     }
     if (router.query.id) fetchOrder()
-  }, [router.query.id])
+  }, [router.query.id, router.query])
 
   if (loading) return 'loading'
 

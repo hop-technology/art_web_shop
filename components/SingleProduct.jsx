@@ -19,16 +19,16 @@ const SingleProduct = ({ props, activeCurrency }) => {
     router.query.variantId || variantsHandler
   )
 
-  useEffect(() => {
+/*   useEffect(() => {
     const url =
       props.variants.length < 1
         ? `/products/${props.slug}`
         : `/products/${props.slug}?variant=${activeVariantId}`
     router.replace(url, url, { shallow: true })
-  }, [activeVariantId, props.slug, router, props.variants.length])
+  }, [activeVariantId, props.slug, router, props.variants.length]) */
 
   const activeVariant =
-    props.variants.lenght < 1
+    props.variants.length < 1
       ? setActiveVariantId('')
       : props.variants.find((variant) => variant.id === activeVariantId)
   const changeVariant = (event) => setActiveVariantId(event.target.value)
@@ -37,7 +37,6 @@ const SingleProduct = ({ props, activeCurrency }) => {
     setVariantQuantity(Number(event.target.value))
 
   const addToCart = () => {
-    debugger
     const itemMetadata = router.locales.reduce(
       (acc, locale) => ({
         ...acc,
@@ -51,13 +50,14 @@ const SingleProduct = ({ props, activeCurrency }) => {
     )
     let popUpMessage = 'Product added to cart'
     let id = activeVariantId ? activeVariantId : props.id
+    let image = props.images[0]?.url || '/Walborg_logo.png'
     try {
       let product = {
         id: id,
         name: props.name,
-        size: activeVariant.name,
+        //size: activeVariant.name,
         productId: props.id,
-        image: props.images[0],
+        image: image,
         price: props.price,
         ...itemMetadata,
       }

@@ -28,7 +28,7 @@
     "react-hook-form": "^7.30.0",
     "react-redux": "^7.2.8",
     "react-use-cart": "^1.13.0",
-    "stripe": "^8.218.0"
+    "stripe": "9.8.0"
   },
   "devDependencies": {
     "eslint": "8.13.0",
