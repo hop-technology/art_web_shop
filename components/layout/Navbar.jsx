@@ -30,7 +30,10 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('scroll', logit)
     }
-  })
+  }, [])
+
+
+  
 
   const isScrolled = scrollY >= 10 ? 'scrolled' : ''
 
@@ -51,7 +54,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className='selection'>
-            <Link href='/contact'>
+            <Link href='/contact' passHref>
               <a className={`navbar__links--a ${contactActive}`}>
                 <p>Kontakt</p>
               </a>
@@ -63,7 +66,7 @@ const Navbar = () => {
         <div className='navbar__links--right'>
           <div className='selection'>
             <div className='selection__cart'>
-              <Link href='/cart'>
+              <Link href='/cart' passHref>
                 <a className={`navbar__links--a ${cartActive}`}>
                   <Image
                     src='/shopping-cart.svg'

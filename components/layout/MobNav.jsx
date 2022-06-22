@@ -16,7 +16,7 @@ const MobNav = ({ show, close }) => {
     return () => {
       window.removeEventListener('scroll', logit)
     }
-  })
+  },[])
 
   // images needs to be changed to webp
 
