@@ -18,10 +18,10 @@ const NonVariantHandler = ({ props, activeCurrency }) => {
   //   router.query.variantId || props.variants[0].id
   // );
 
-  useEffect(() => {
-    const url = `/products/${props.slug}`;
-    router.replace(url, url, { shallow: true });
-  }, [props.slug, router, props.variants.length]);
+  // useEffect(() => {
+  //   const url = `/products/${props.slug}`;
+  //   router.replace(url, url, { shallow: true });
+  // }, [props.slug, router, props.variants.length]);
 
   // const activeVariant =
   //   props.variants.length < 1
