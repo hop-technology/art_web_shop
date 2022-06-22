@@ -1,36 +1,21 @@
-import { useEffect, useState, useRef } from 'react';
-import { useRouter } from 'next/router';
-import { useCart } from 'react-use-cart';
-import Image from 'next/image';
-import Button from './ui/Button';
-import HopHelper from '../pages/api/helpers';
-import { useDispatch } from 'react-redux';
-import { errorMessage, successMessage } from '../redux/reducers/message.slice';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { useState, useRef } from 'react'
+import { useRouter } from 'next/router'
+import { useCart } from 'react-use-cart'
+import Image from 'next/image'
+import Button from './ui/Button'
+import HopHelper from '../pages/api/helpers'
+import { useDispatch } from 'react-redux'
+import { errorMessage, successMessage } from '../redux/reducers/message.slice'
 
 const NonVariantHandler = ({ props, activeCurrency }) => {
-  const { addItem } = useCart();
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const [quantity, setQuantity] = useState(1);
-  const inputRef = useRef(1);
-  // const [activeVariantId, setActiveVariantId] = useState(
-  //   router.query.variantId || props.variants[0].id
-  // );
-
-  // useEffect(() => {
-  //   const url = `/products/${props.slug}`;
-  //   router.replace(url, url, { shallow: true });
-  // }, [props.slug, router, props.variants.length]);
-
-  // const activeVariant =
-  //   props.variants.length < 1
-  //     ? setActiveVariantId('')
-  //     : props.variants.find((variant) => variant.id === activeVariantId);
-  // const changeVariant = (event) => setActiveVariantId(event.target.value);
+  const { addItem } = useCart()
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const [quantity, setQuantity] = useState(1)
+  const inputRef = useRef(1)
 
   const updateQuantity = (event) =>
-    setVariantQuantity(Number(event.target.value));
+    setVariantQuantity(Number(event.target.value))
 
   const addToCart = () => {
     const itemMetadata = router.locales.reduce(
@@ -43,10 +28,10 @@ const NonVariantHandler = ({ props, activeCurrency }) => {
         },
       }),
       {}
-    );
-    let popUpMessage = 'Product added to cart';
-    let id = props.id;
-    let image = props.images[0]?.url || '/Walborg_logo.png';
+    )
+    let popUpMessage = 'Product added to cart'
+    let id = props.id
+    let image = props.images[0]?.url || '/Walborg_logo.png'
     try {
       let product = {
         id: id,
@@ -55,28 +40,28 @@ const NonVariantHandler = ({ props, activeCurrency }) => {
         image: image,
         price: props.price,
         ...itemMetadata,
-      };
+      }
 
-      addItem(product, quantity);
-      dispatch(successMessage(popUpMessage));
+      addItem(product, quantity)
+      dispatch(successMessage(popUpMessage))
     } catch (error) {
-      dispatch(errorMessage('Something went wrong please try again later'));
+      dispatch(errorMessage('Something went wrong please try again later'))
     }
-  };
+  }
 
   const decrement = () => {
     if (inputRef.current > 1) {
-      inputRef.current--;
-      setQuantity(inputRef.current);
+      inputRef.current--
+      setQuantity(inputRef.current)
     }
-  };
+  }
 
   const increment = () => {
     if (inputRef.current <= 49) {
-      inputRef.current++;
-      setQuantity(inputRef.current);
+      inputRef.current++
+      setQuantity(inputRef.current)
     }
-  };
+  }
 
   return (
     <div className='product-page'>
@@ -156,7 +141,7 @@ const NonVariantHandler = ({ props, activeCurrency }) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NonVariantHandler;
+export default NonVariantHandler

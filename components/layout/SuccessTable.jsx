@@ -18,9 +18,11 @@ const SuccessTable = ({ order, activeCurrency }) => {
             <tr className='success__content'>
               <td>
                 <Image
-                  src={item.product.images = []
-                    ? '/Walborg_logo.png'
-                    : item.product.images?.[0]?.url}
+                  src={
+                    (item.product.images = []
+                      ? '/Walborg_logo.png'
+                      : item.product.images?.[0]?.url)
+                  }
                   height='100'
                   width='100'
                   alt={item.product.name}
