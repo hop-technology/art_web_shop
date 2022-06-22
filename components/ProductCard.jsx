@@ -8,7 +8,11 @@ const ProductCard = ({ products }) => {
         <div className='product-card'>
           <div className='product-card__image'>
             <Image
-              src={product.images[0].url}
+              src={
+                product.images = []
+                  ? '/Walborg_logo.png'
+                  : product.images?.[0]?.url
+              }
               width={300}
               height={300}
               alt={product.name}

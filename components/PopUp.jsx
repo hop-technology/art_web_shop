@@ -12,7 +12,7 @@ const PopUp = () => {
         dispatch(resetMessage())
       }, 800)
     }
-  }, [message])
+  }, [message, dispatch])
 
   return message.open && message.success ?
     <div className='popup'>

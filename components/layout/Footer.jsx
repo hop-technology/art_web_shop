@@ -31,7 +31,7 @@ const Footer = ({ categories = [] }) => {
       <div className='content'>
         <div className='content__image'>
           <Image
-            src='/Walborg_logo_Center_BLACK.png'
+            src='/Walborg_logo.png'
             height={100}
             width={120}
             alt='Walborg logo'

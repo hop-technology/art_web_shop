@@ -8,9 +8,8 @@ import { useSettingsContext } from '../context/settings'
 import getPageData from '../lib/get-page-data'
 import getAllProducts from '../lib/get-all-product'
 
-
-
 const CartPage = () => {
+  
   const router = useRouter
   const { cartTotal, isEmpty, items, removeItem, updateItemQuantity } =
     useCart()
@@ -26,8 +25,10 @@ const CartPage = () => {
   const handlePay = (data) => {
     setLoading(true)
     HopHelper.createCheckOutSession(data, router, activeCurrency, cartTotal)
+    
   }
 
+ 
   return (
     <div className='cart'>
       {isEmpty ? (
@@ -37,15 +38,12 @@ const CartPage = () => {
           <h1 className='cart__status'>Your Cart</h1>
           <div className='cart__divider'></div>
           {items.map((item, index) => {
+           
+         
             return (
               <div key={index} className='item'>
                 <div className='item__image'>
-                  <Image
-                    src={item.image.url}
-                    height='100'
-                    width='100'
-                    alt={item.name}
-                  />
+                  <Image src={item.image} height='100' width='100' alt={item.name} />
                 </div>
                 <div className='item__info'>
                   <p>{item.size}</p>

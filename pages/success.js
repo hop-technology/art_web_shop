@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useCart } from 'react-use-cart'
 import { useSettingsContext } from '../context/settings'
 import getOrderBySessionId from '../lib/get-order-session-id'
 import HopHelper from './api/helpers'
@@ -11,6 +12,7 @@ const SuccessPage = () => {
   const [order, setOrder] = useState(null)
   const [success, setSuccess] = useState(false)
   const { activeCurrency } = useSettingsContext()
+  const { emptyCart } = useCart()
 
   useEffect(() => {
     const { id } = router.query
@@ -19,13 +21,14 @@ const SuccessPage = () => {
       setLoading(false)
       setOrder(order.order)
       setSuccess(true)
+      emptyCart()
     }
     if (router.query.id) fetchOrder()
-  }, [router.query.id])
+  }, [router.query.id, router.query, emptyCart])
 
   if (loading) return 'loading'
 
-  return success ? (
+  return success ?  (
     <div className='success'>
       <h1 className='success__message'>Thank you for your order!</h1>
       <div className='success__product-information'>
@@ -49,7 +52,7 @@ const SuccessPage = () => {
             })}
           </h2>
           <h3>
-            Please contact us at
+            Please contact us at&nbsp;
             <a href='artshop@walborgventures.com'>
               artshop@walborgventures.com
             </a>

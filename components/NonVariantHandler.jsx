@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useCart } from 'react-use-cart'
 import Image from 'next/image'
@@ -6,28 +6,13 @@ import Button from './ui/Button'
 import HopHelper from '../pages/api/helpers'
 import { useDispatch } from 'react-redux'
 import { errorMessage, successMessage } from '../redux/reducers/message.slice'
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
-const SingleProduct = ({ props, activeCurrency }) => {
+const NonVariantHandler = ({ props, activeCurrency }) => {
   const { addItem } = useCart()
   const dispatch = useDispatch()
   const router = useRouter()
-  const [variantQuantity, setVariantQuantity] = useState(1)
-  const [activeVariantId, setActiveVariantId] = useState(
-    router.query.variantId || props.variants[0].id
-  )
+  const [quantity, setQuantity] = useState(1)
   const inputRef = useRef(1)
-
-  useEffect(() => {
-    const url = `/products/${props.slug}?variant=${activeVariantId}`
-
-    router.replace(url, url, { shallow: true })
-  }, [activeVariantId])
-
-  const activeVariant = props.variants.find(
-    (variant) => variant.id === activeVariantId
-  )
-  const changeVariant = (event) => setActiveVariantId(event.target.value)
 
   const updateQuantity = (event) =>
     setVariantQuantity(Number(event.target.value))
@@ -45,18 +30,19 @@ const SingleProduct = ({ props, activeCurrency }) => {
       {}
     )
     let popUpMessage = 'Product added to cart'
+    let id = props.id
+    let image = props.images[0]?.url || '/Walborg_logo.png'
     try {
       let product = {
-        id: activeVariantId,
+        id: id,
         name: props.name,
-        size: activeVariant.name,
         productId: props.id,
-        image: props.images[0],
+        image: image,
         price: props.price,
         ...itemMetadata,
       }
 
-      addItem(product, variantQuantity)
+      addItem(product, quantity)
       dispatch(successMessage(popUpMessage))
     } catch (error) {
       dispatch(errorMessage('Something went wrong please try again later'))
@@ -66,14 +52,14 @@ const SingleProduct = ({ props, activeCurrency }) => {
   const decrement = () => {
     if (inputRef.current > 1) {
       inputRef.current--
-      setVariantQuantity(inputRef.current)
+      setQuantity(inputRef.current)
     }
   }
 
   const increment = () => {
     if (inputRef.current <= 49) {
       inputRef.current++
-      setVariantQuantity(inputRef.current)
+      setQuantity(inputRef.current)
     }
   }
 
@@ -93,35 +79,6 @@ const SingleProduct = ({ props, activeCurrency }) => {
           </p>
         </div>
         <div className='product-page__content--options'>
-          <div className='size'>
-            <DropdownMenu.Root>
-              <DropdownMenu.Trigger className='trigger'>
-                {activeVariant.name}
-                <svg
-                  className='caret-down'
-                  viewBox='0 0 15 15'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    d='M4.18179 6.18181C4.35753 6.00608 4.64245 6.00608 4.81819 6.18181L7.49999 8.86362L10.1818 6.18181C10.3575 6.00608 10.6424 6.00608 10.8182 6.18181C10.9939 6.35755 10.9939 6.64247 10.8182 6.81821L7.81819 9.81821C7.73379 9.9026 7.61934 9.95001 7.49999 9.95001C7.38064 9.95001 7.26618 9.9026 7.18179 9.81821L4.18179 6.81821C4.00605 6.64247 4.00605 6.35755 4.18179 6.18181Z'
-                    fill='currentColor'
-                    fillRule='evenodd'
-                    clipRule='evenodd'></path>
-                </svg>
-              </DropdownMenu.Trigger>
-              <DropdownMenu.Content loop className='content'>
-                {props.variants.map((variant) => (
-                  <DropdownMenu.Item
-                    className='item'
-                    key={variant.id}
-                    onClick={() => setActiveVariantId(variant.id)}>
-                    {variant.name}
-                  </DropdownMenu.Item>
-                ))}
-                <DropdownMenu.Arrow offset={5} className='arrow' />
-              </DropdownMenu.Content>
-            </DropdownMenu.Root>
-          </div>
           <div className='quantity'>
             <label htmlFor='quantity'>Pcs:</label>
             <button onClick={decrement} className='quantity-minus'>
@@ -147,7 +104,7 @@ const SingleProduct = ({ props, activeCurrency }) => {
               max='50'
               readOnly
               onChange={updateQuantity}
-              value={variantQuantity}></input>
+              value={quantity}></input>
             <button onClick={increment} className='quantity-plus'>
               <svg
                 width='15'
@@ -173,7 +130,11 @@ const SingleProduct = ({ props, activeCurrency }) => {
       </div>
       <div className='product-page__image'>
         <Image
-          src={props.images[0].url}
+          src={
+            props.images.length < 1
+              ? '/Walborg_logo.png'
+              : props.images?.[0]?.url
+          }
           alt={props.name}
           height={600}
           width={600}
@@ -183,4 +144,4 @@ const SingleProduct = ({ props, activeCurrency }) => {
   )
 }
 
-export default SingleProduct
+export default NonVariantHandler

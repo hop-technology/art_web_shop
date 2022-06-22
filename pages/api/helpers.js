@@ -1,5 +1,4 @@
 import { loadStripe } from '@stripe/stripe-js'
-import { useCart } from 'react-use-cart'
 import store from '../../redux/store/store'
 import {
   errorMessage,
