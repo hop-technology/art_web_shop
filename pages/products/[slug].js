@@ -1,6 +1,5 @@
 import getAllProducts from '../../lib/get-all-product';
 import getProductBySlug from '../../lib/get-product-slug';
-import ProductPage from '../../components/ProductPage';
 import NonVariantHandler from '../../components/NonVariantHandler';
 import VariantsHandler from '../../components/VariantsHandler';
 import Categories from '../../components/Categories';
